@@ -169,7 +169,19 @@ export const AWARDS = [
         title: "English Access Microscholarship Program",
         organization: "U.S. Department of State",
         year: "2018–2020",
-        description: "Two-year intensive English program sponsored by the U.S. Embassy.",
+        description: "Certified for successful participation in a two-year intensive English program sponsored by the U.S. Embassy and administered by Jimma University.",
+    },
+    {
+        title: "Team Leadership & Coordination",
+        organization: "U.S. Embassy, Addis Ababa | Access Alumni Program",
+        year: "2024",
+        description: "Appreciation for coordinating team-building initiatives at the 2024 Access Alumni Leadership Conference.",
+    },
+    {
+        title: "E4BE Hackathon (Eastern Africa English for Business & Entrepreneurship)",
+        organization: "Arusha, Tanzania",
+        year: "2026",
+        description: "Participated in an international youth entrepreneurship and innovation hackathon held in Arusha, Tanzania. Engaged in teamwork, networking, innovation challenges, and cross-border collaboration with participants from across Africa.",
     },
 ];
 
