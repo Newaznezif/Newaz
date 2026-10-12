@@ -41,6 +41,16 @@ export const SKILLS = [
 
 export const EXPERIENCE = [
     {
+        role: "Youth Advisory Council Member",
+        company: "EngenderHealth Ethiopia",
+        location: "Ethiopia",
+        period: "Present",
+        description: [
+            "Leads youth capacity-building and leadership initiatives.",
+            "Drives digital SRHR advocacy to empower young people and foster regional community engagement.",
+        ],
+    },
+    {
         role: "Cybersecurity Analyst",
         company: "FDRE INSA",
         location: "Ethiopia",
