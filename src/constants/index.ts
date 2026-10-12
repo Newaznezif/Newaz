@@ -181,6 +181,12 @@ export const AWARDS = [
         year: "2018–2020",
         description: "Two-year intensive English program sponsored by the U.S. Embassy.",
     },
+    {
+        title: "E4BE Hackathon (Eastern Africa English for Business & Entrepreneurship)",
+        organization: "Arusha, Tanzania",
+        year: "2026",
+        description: "Participated in an international youth entrepreneurship and innovation hackathon held in Arusha, Tanzania. Engaged in teamwork, networking, innovation challenges, and cross-border collaboration with participants from across Africa.",
+    },
 ];
 
 export const VOLUNTEERING = [
