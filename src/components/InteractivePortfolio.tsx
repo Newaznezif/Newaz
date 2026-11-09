@@ -2,9 +2,8 @@
 
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import {
-  Activity, Award, Bot, CheckCircle2, ChevronRight, Command, Copy, ExternalLink,
-  Github, Globe2, LockKeyhole, MessageSquare, Network, Radio, Shield, Terminal,
-  UserRound, Volume2, VolumeX, X, Zap
+  Award, Bot, CheckCircle2, Copy, ExternalLink, Github, LockKeyhole, Network,
+  Radio, Shield, Terminal, UserRound, Volume2, VolumeX, Zap
 } from "lucide-react";
 import { AWARDS, CERTIFICATIONS, PERSONAL_INFO, PROJECTS } from "@/constants";
 
@@ -38,7 +37,6 @@ const commandCards = [
 
 export function InteractivePortfolio() {
   const [bootVisible, setBootVisible] = useState(false);
-  const [bootDone, setBootDone] = useState(false);
   const [hackerMode, setHackerMode] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [terminalInput, setTerminalInput] = useState("");
@@ -56,14 +54,12 @@ export function InteractivePortfolio() {
   useEffect(() => {
     try {
       if (!sessionStorage.getItem("newaz-boot-seen")) setBootVisible(true);
-      else setBootDone(true);
-    } catch { setBootDone(true); }
+    } catch { /* storage may be unavailable */ }
   }, []);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
       setBootVisible(false);
-      setBootDone(true);
       try { sessionStorage.setItem("newaz-boot-seen", "1"); } catch { /* storage may be unavailable */ }
     }, 2600);
     return () => window.clearTimeout(timer);
@@ -88,7 +84,7 @@ export function InteractivePortfolio() {
 
   const qrUrl = useMemo(() => "https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=" + encodeURIComponent("https://newaznezif.netlify.app"), []);
 
-  function runCommand(event: FormEvent<HTMLFormElement>) {
+  function playUiSound() {\n    if (!soundEnabled) return;\n    try {\n      const context = new AudioContext();\n      const oscillator = context.createOscillator();\n      const gain = context.createGain();\n      oscillator.type = "sine";\n      oscillator.frequency.setValueAtTime(620, context.currentTime);\n      oscillator.frequency.exponentialRampToValueAtTime(360, context.currentTime + 0.07);\n      gain.gain.setValueAtTime(0.025, context.currentTime);\n      gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.08);\n      oscillator.connect(gain);\n      gain.connect(context.destination);\n      oscillator.start();\n      oscillator.stop(context.currentTime + 0.09);\n      oscillator.onended = () => void context.close();\n    } catch { /* Audio may be unavailable or blocked */ }\n  }\n\n  function runCommand(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const command = terminalInput.trim().toLowerCase();
     if (!command) return;
@@ -117,7 +113,6 @@ export function InteractivePortfolio() {
 
   function dismissBoot() {
     setBootVisible(false);
-    setBootDone(true);
     try { sessionStorage.setItem("newaz-boot-seen", "1"); } catch { /* storage may be unavailable */ }
   }
 
@@ -130,7 +125,7 @@ export function InteractivePortfolio() {
             <div className="space-y-2 font-mono text-xs text-emerald-300 sm:text-sm">
               <p>[ OK ] Loading identity profile…</p><p>[ OK ] Mounting cybersecurity modules…</p><p>[ OK ] Initializing project index…</p><p>[ OK ] Establishing secure portfolio session…</p>
             </div>
-            <div className="mt-6 h-1.5 overflow-hidden rounded bg-white/10"><div className="h-full w-full origin-left animate-[bootbar_2.4s_ease-out_forwards] bg-primary" /></div>
+            <div className="mt-6 h-1.5 overflow-hidden rounded bg-white/10"><div className="h-full w-full origin-left animate-pulse bg-primary" /></div>
             <button onClick={dismissBoot} className="mt-6 text-xs text-white/50 underline underline-offset-4 hover:text-primary">Skip startup sequence</button>
           </div>
         </div>
@@ -140,9 +135,9 @@ export function InteractivePortfolio() {
         <div className="mb-10 flex flex-col gap-5 border-b border-white/10 pb-7 sm:flex-row sm:items-end sm:justify-between">
           <div><p className="mb-3 font-mono text-xs tracking-[0.2em] text-primary">INTERACTIVE PORTFOLIO / SYSTEM HUB</p><h2 className="mb-3 text-3xl font-bold sm:text-4xl">Explore the command center.</h2><p className="max-w-2xl text-sm leading-relaxed text-text-secondary">A hands-on view of my work across cybersecurity, software engineering, and applied AI.</p></div>
           <div className="flex flex-wrap gap-2">
-            <button onClick={() => setHackerMode(false)} className={"rounded border px-3 py-2 text-xs " + (!hackerMode ? "border-primary bg-primary/10 text-primary" : "border-white/10 text-text-secondary")}>Professional</button>
-            <button onClick={() => setHackerMode(true)} className={"rounded border px-3 py-2 text-xs " + (hackerMode ? "border-primary bg-primary/10 text-primary" : "border-white/10 text-text-secondary")}>Hacker mode</button>
-            <button onClick={() => setSoundEnabled((value) => !value)} aria-label={soundEnabled ? "Disable interface sound" : "Enable interface sound"} className="rounded border border-white/10 px-3 py-2 text-xs text-text-secondary hover:border-primary/40 hover:text-primary">{soundEnabled ? <Volume2 size={15} /> : <VolumeX size={15} />}</button>
+            <button onClick={() => { setHackerMode(false); playUiSound(); }} className={"rounded border px-3 py-2 text-xs " + (!hackerMode ? "border-primary bg-primary/10 text-primary" : "border-white/10 text-text-secondary")}>Professional</button>
+            <button onClick={() => { setHackerMode(true); playUiSound(); }} className={"rounded border px-3 py-2 text-xs " + (hackerMode ? "border-primary bg-primary/10 text-primary" : "border-white/10 text-text-secondary")}>Hacker mode</button>
+            <button onClick={() => { setSoundEnabled((value) => !value); }} aria-label={soundEnabled ? "Disable interface sound" : "Enable interface sound"} className="rounded border border-white/10 px-3 py-2 text-xs text-text-secondary hover:border-primary/40 hover:text-primary">{soundEnabled ? <Volume2 size={15} /> : <VolumeX size={15} />}</button>
           </div>
         </div>
 
