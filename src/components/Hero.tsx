@@ -12,81 +12,107 @@ export const Hero = () => {
         ? {}
         : { initial: { opacity: 0, y: 12 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.45, ease: "easeOut" as const } };
 
+    const introScript = `Hello, internet! Is the Wi-Fi working? Good. Because you're about to enter my world.
+I AM NEWAZ NEZIF.
+Cybersecurity analyst by profession, developer by curiosity, AI enthusiast by obsession, and professional debugger of problems I sometimes create myself.
+I spend my days analyzing cyber threats, exploring artificial intelligence, writing code, building applications, and occasionally asking myself why something worked perfectly yesterday but decided to retire today.
+I speak Python, Java, SQL, and occasionally fluent ERROR 404.
+Firewalls? I study them. Networks? I investigate them. Bugs? Unfortunately, they know me personally.
+I believe every problem has a solution, every system has something worth understanding, and every developer deserves at least one coffee before debugging production.
+My mission? Explore technology, strengthen cybersecurity, build intelligent solutions, and turn crazy ideas into real-world projects.
+I'm not saying I can hack the planet... but I can definitely spend six hours figuring out why a semicolon broke everything.
+So, take a look around. Explore my projects, discover my work, and get to know the person behind the keyboard.
+Just one warning: curiosity is contagious.
+I AM NEWAZ NEZIF.
+LESS TALK. MORE CODE. FEWER BUGS... WELL, WE'RE WORKING ON THAT.`;
+
     const playIntro = () => {
         if (isPlayingIntro) return;
         setIsPlayingIntro(true);
 
-        // A short, locally generated digital glitch sting. No audio file or external request.
-        try {
-            const AudioContextClass = window.AudioContext;
-            if (AudioContextClass) {
-                const context = new AudioContextClass();
-                const master = context.createGain();
-                master.gain.setValueAtTime(0.0001, context.currentTime);
-                master.gain.exponentialRampToValueAtTime(0.16, context.currentTime + 0.035);
-                master.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 1.35);
-                master.connect(context.destination);
+        let audioContext: AudioContext | null = null;
+        let ambienceNodes: OscillatorNode[] = [];
+        let ambienceGain: GainNode | null = null;
 
-                [110, 220, 660, 440, 880].forEach((frequency, index) => {
-                    const oscillator = context.createOscillator();
-                    const gain = context.createGain();
-                    const start = context.currentTime + index * 0.105;
-                    oscillator.type = index % 2 === 0 ? "sawtooth" : "square";
-                    oscillator.frequency.setValueAtTime(frequency * 1.8, start);
-                    oscillator.frequency.exponentialRampToValueAtTime(frequency, start + 0.11);
-                    gain.gain.setValueAtTime(0.0001, start);
-                    gain.gain.exponentialRampToValueAtTime(0.22, start + 0.012);
-                    gain.gain.exponentialRampToValueAtTime(0.0001, start + 0.16);
-                    oscillator.connect(gain);
-                    gain.connect(master);
-                    oscillator.start(start);
-                    oscillator.stop(start + 0.17);
+        const stopAmbience = () => {
+            if (!audioContext || !ambienceGain) return;
+            try {
+                const now = audioContext.currentTime;
+                ambienceGain.gain.cancelScheduledValues(now);
+                ambienceGain.gain.setTargetAtTime(0.0001, now, 0.12);
+                ambienceNodes.forEach((node) => {
+                    try { node.stop(now + 0.45); } catch { /* already stopped */ }
                 });
-
-                const noiseBuffer = context.createBuffer(1, context.sampleRate * 0.42, context.sampleRate);
-                const noiseData = noiseBuffer.getChannelData(0);
-                for (let i = 0; i < noiseData.length; i += 1) {
-                    noiseData[i] = (Math.random() * 2 - 1) * (Math.random() > 0.82 ? 1 : 0.22);
-                }
-                const noise = context.createBufferSource();
-                const filter = context.createBiquadFilter();
-                const noiseGain = context.createGain();
-                noise.buffer = noiseBuffer;
-                filter.type = "bandpass";
-                filter.frequency.value = 2400;
-                filter.Q.value = 0.8;
-                noiseGain.gain.setValueAtTime(0.0001, context.currentTime + 0.08);
-                noiseGain.gain.exponentialRampToValueAtTime(0.12, context.currentTime + 0.12);
-                noiseGain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.48);
-                noise.connect(filter);
-                filter.connect(noiseGain);
-                noiseGain.connect(master);
-                noise.start(context.currentTime + 0.08);
-                noise.stop(context.currentTime + 0.49);
-                setTimeout(() => void context.close(), 1800);
+                setTimeout(() => {
+                    if (audioContext && audioContext.state !== "closed") void audioContext.close();
+                }, 600);
+            } catch {
+                if (audioContext && audioContext.state !== "closed") void audioContext.close();
             }
+        };
+
+        // Quiet synthesized cyber ambience runs underneath the spoken intro.
+        try {
+            audioContext = new AudioContext();
+            const filter = audioContext.createBiquadFilter();
+            ambienceGain = audioContext.createGain();
+            filter.type = "lowpass";
+            filter.frequency.value = 260;
+            ambienceGain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+            ambienceGain.gain.linearRampToValueAtTime(0.025, audioContext.currentTime + 0.35);
+            filter.connect(ambienceGain);
+            ambienceGain.connect(audioContext.destination);
+
+            [48, 96, 144].forEach((frequency, index) => {
+                const oscillator = audioContext!.createOscillator();
+                const voiceGain = audioContext!.createGain();
+                oscillator.type = index === 1 ? "square" : "sawtooth";
+                oscillator.frequency.value = frequency;
+                voiceGain.gain.value = index === 0 ? 0.18 : 0.055;
+                oscillator.connect(voiceGain);
+                voiceGain.connect(filter);
+                oscillator.start();
+                ambienceNodes.push(oscillator);
+            });
+
+            // A brief digital glitch accent at the beginning of the transmission.
+            const glitchOscillator = audioContext.createOscillator();
+            const glitchGain = audioContext.createGain();
+            glitchOscillator.type = "square";
+            glitchOscillator.frequency.setValueAtTime(980, audioContext.currentTime);
+            glitchOscillator.frequency.exponentialRampToValueAtTime(170, audioContext.currentTime + 0.22);
+            glitchGain.gain.setValueAtTime(0.0001, audioContext.currentTime);
+            glitchGain.gain.exponentialRampToValueAtTime(0.045, audioContext.currentTime + 0.025);
+            glitchGain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.28);
+            glitchOscillator.connect(glitchGain);
+            glitchGain.connect(audioContext.destination);
+            glitchOscillator.start();
+            glitchOscillator.stop(audioContext.currentTime + 0.3);
         } catch {
-            // Speech remains available if Web Audio is blocked by the browser.
+            audioContext = null;
         }
+
+        const finishIntro = () => {
+            stopAmbience();
+            setIsPlayingIntro(false);
+        };
 
         if ("speechSynthesis" in window) {
             window.speechSynthesis.cancel();
-            const line = new SpeechSynthesisUtterance("This is Newaz Nezif.");
+            const line = new SpeechSynthesisUtterance(introScript);
             line.lang = "en-US";
-            line.rate = 0.88;
-            line.pitch = 0.72;
-            line.volume = 0.9;
+            line.rate = 0.92;
+            line.pitch = 0.82;
+            line.volume = 1;
             const englishVoice = window.speechSynthesis.getVoices().find((voice) => voice.lang.toLowerCase().startsWith("en"));
             if (englishVoice) line.voice = englishVoice;
-            line.onend = () => setIsPlayingIntro(false);
-            line.onerror = () => setIsPlayingIntro(false);
+            line.onend = finishIntro;
+            line.onerror = finishIntro;
             window.speechSynthesis.speak(line);
-            setTimeout(() => setIsPlayingIntro(false), 4500);
         } else {
-            setTimeout(() => setIsPlayingIntro(false), 1500);
+            setTimeout(finishIntro, 2000);
         }
     };
-
     return (
         <section className="relative min-h-[92vh] flex items-center overflow-hidden pt-28 pb-20">
             <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -114,6 +140,30 @@ export const Hero = () => {
                                 {isPlayingIntro ? "TRANSMITTING..." : "PLAY INTRO"}
                             </button>
                         </div>
+                        {isPlayingIntro && (
+                            <motion.div
+                                initial={{ opacity: 0, y: 8, scale: 0.985 }}
+                                animate={{ opacity: 1, y: 0, scale: 1 }}
+                                className="mb-7 max-w-2xl overflow-hidden rounded-xl border border-primary/30 bg-[#02090d]/95 shadow-[0_0_35px_rgba(0,220,255,0.09)]"
+                                role="status"
+                                aria-live="polite"
+                            >
+                                <div className="flex items-center justify-between gap-3 border-b border-primary/20 bg-primary/[0.07] px-4 py-2.5">
+                                    <div className="flex items-center gap-2">
+                                        <span className="h-2 w-2 rounded-full bg-red-400" />
+                                        <span className="h-2 w-2 rounded-full bg-yellow-400" />
+                                        <span className="h-2 w-2 rounded-full bg-green-400" />
+                                        <span className="ml-2 font-mono text-[10px] tracking-[0.14em] text-primary">NEWAZ@ROOT:~ / INTRO_SEQUENCE</span>
+                                    </div>
+                                    <span className="font-mono text-[9px] tracking-widest text-cyan-300 animate-pulse">LIVE</span>
+                                </div>
+                                <div className="max-h-48 overflow-y-auto px-4 py-3 font-mono text-[11px] leading-relaxed text-cyan-100/80 whitespace-pre-line">
+                                    <span className="text-primary">{">"} transmission.init()</span>{"\n"}
+                                    {introScript}
+                                    <span className="ml-1 inline-block h-3 w-1 animate-pulse bg-primary align-middle" />
+                                </div>
+                            </motion.div>
+                        )}
                         <h1 className="text-[clamp(3.2rem,8vw,6.8rem)] leading-[0.94] font-bold tracking-[-0.07em] mb-7">
                             NEWAZ<br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-200 to-white">NEZIF.</span>
