@@ -63,7 +63,7 @@ export const Hero = () => {
                 noiseGain.connect(master);
                 noise.start(context.currentTime + 0.08);
                 noise.stop(context.currentTime + 0.49);
-                window.setTimeout(() => void context.close(), 1800);
+                setTimeout(() => void context.close(), 1800);
             }
         } catch {
             // Speech remains available if Web Audio is blocked by the browser.
@@ -81,9 +81,9 @@ export const Hero = () => {
             line.onend = () => setIsPlayingIntro(false);
             line.onerror = () => setIsPlayingIntro(false);
             window.speechSynthesis.speak(line);
-            window.setTimeout(() => setIsPlayingIntro(false), 4500);
+            setTimeout(() => setIsPlayingIntro(false), 4500);
         } else {
-            window.setTimeout(() => setIsPlayingIntro(false), 1500);
+            setTimeout(() => setIsPlayingIntro(false), 1500);
         }
     };
 
