@@ -1,158 +1,81 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowDown, ScanFace, CheckCircle2, ShieldCheck } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react";
 import { PERSONAL_INFO } from "@/constants";
 
 export const Hero = () => {
-    const [isScanning, setIsScanning] = useState(false);
-
     return (
-        <section className="relative h-screen flex flex-col justify-center items-center overflow-hidden">
-            {/* Dynamic Background Elements */}
+        <section className="relative min-h-[92vh] flex items-center overflow-hidden pt-28 pb-20">
             <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/20 rounded-full blur-[120px] opacity-20 animate-pulse" />
-                <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-purple-500/20 rounded-full blur-[120px] opacity-20 animate-pulse delay-1000" />
+                <div className="absolute -top-32 right-0 w-[520px] h-[520px] bg-primary/10 rounded-full blur-[140px]" />
+                <div className="absolute bottom-0 left-0 w-[420px] h-[420px] bg-blue-500/10 rounded-full blur-[140px]" />
             </div>
 
             <div className="container-mega relative z-10">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    <div className="text-left order-2 lg:order-1">
-                        <motion.div
-                            initial={{ opacity: 0, x: -20 }}
-                            animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.8, ease: "easeOut" }}
-                        >
-                            <h2 className="text-primary font-mono text-sm sm:text-base tracking-[0.2em] uppercase mb-6">
-                                {PERSONAL_INFO.title}
+                <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-14 items-center">
+                    <div className="order-2 lg:order-1">
+                        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+                            <div className="inline-flex items-center gap-2 border border-primary/20 bg-primary/[0.06] px-3 py-2 rounded-full mb-8">
+                                <span className="w-2 h-2 rounded-full bg-primary" />
+                                <span className="font-mono text-[11px] tracking-[0.14em] uppercase text-primary">Cybersecurity • AI • Engineering</span>
+                            </div>
+                            <p className="font-mono text-sm text-text-secondary tracking-[0.18em] uppercase mb-4">Hello, I&apos;m</p>
+                            <h1 className="text-[clamp(3.2rem,8vw,6.8rem)] leading-[0.94] font-bold tracking-[-0.07em] mb-7">
+                                NEWAZ<br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-cyan-200 to-white">NEZIF.</span>
+                            </h1>
+                            <h2 className="text-xl sm:text-2xl md:text-3xl text-white font-semibold mb-5">
+                                Cybersecurity Analyst <span className="text-primary">/</span> AI
                             </h2>
-                        </motion.div>
-
-                        <motion.h1
-                            className="mb-8 leading-none"
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 1, ease: "circOut", delay: 0.2 }}
-                        >
-                            <span className="text-[var(--color-text-main)] text-5xl sm:text-7xl font-bold tracking-tighter mr-4">NEWAZ</span>
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--color-text-main)] via-[var(--color-text-main)] to-[var(--color-text-main)]/50 text-5xl sm:text-7xl font-bold tracking-tighter">
-                                NEZIF
-                            </span>
-                        </motion.h1>
-
-                        {/* Professional Summary - Visible only when scanning */}
-                        <motion.div
-                            className="text-text-secondary text-lg sm:text-xl max-w-xl mb-10 leading-relaxed overflow-hidden"
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{
-                                opacity: isScanning ? 1 : 0,
-                                height: isScanning ? "auto" : 0
-                            }}
-                            transition={{ duration: 0.5, ease: "easeInOut" }}
-                        >
-                            <p>
-                                Identify threats. Secure infrastructure. <br />
-                                <span className="text-[var(--color-text-main)]">Engineer the future of digital defense.</span>
+                            <p className="text-text-secondary text-base sm:text-lg max-w-2xl leading-relaxed mb-8">
+                                Protecting digital infrastructure, investigating threats, and building intelligent technology for real-world challenges.
                             </p>
-                        </motion.div>
-
-                        <motion.div
-                            className="flex flex-col sm:flex-row gap-6"
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 0.8, delay: 0.8 }}
-                        >
-                            <a href="#projects" className="btn-primary text-center">
-                                View Operations
-                            </a>
-                            <a href="#contact" className="btn-outline text-center">
-                                Contact Me
-                            </a>
+                            <div className="flex flex-wrap gap-3 mb-8">
+                                <a href="#projects" className="btn-primary inline-flex items-center gap-2">
+                                    Explore my work <ArrowUpRight size={16} />
+                                </a>
+                                <a href="#contact" className="btn-outline inline-flex items-center gap-2">
+                                    Get in touch
+                                </a>
+                            </div>
+                            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 text-sm text-text-secondary">
+                                <span className="inline-flex items-center gap-2"><MapPin size={15} className="text-primary" />{PERSONAL_INFO.location}</span>
+                                <a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-primary transition-colors"><Linkedin size={15} /> LinkedIn</a>
+                                <a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 hover:text-primary transition-colors"><Github size={15} /> GitHub</a>
+                            </div>
                         </motion.div>
                     </div>
 
                     <motion.div
-                        className="order-1 lg:order-2 flex flex-col items-center lg:items-end justify-center"
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: 0.4, ease: "backOut" }}
+                        className="order-1 lg:order-2 flex justify-center lg:justify-end"
+                        initial={{ opacity: 0, scale: 0.96, y: 20 }}
+                        animate={{ opacity: 1, scale: 1, y: 0 }}
+                        transition={{ duration: 0.8, delay: 0.15 }}
                     >
-                        <div
-                            className="relative group cursor-crosshair"
-                            onMouseEnter={() => setIsScanning(true)}
-                            onMouseLeave={() => setIsScanning(false)}
-                        >
-                            <div className="relative w-full max-w-sm aspect-[3/4] rounded-2xl overflow-hidden border border-white/10 shadow-[0_0_40px_rgba(0,242,234,0.15)] bg-black transition-all duration-500 ease-out transform-gpu z-20">
-                                {/* Base Image */}
-                                <img
-                                    src="/Pro.png"
-                                    alt="Newaz Nezif"
-                                    className="w-full h-[108%] object-cover object-top opacity-90 group-hover:opacity-100 group-hover:grayscale group-hover:contrast-125 transition-all duration-500"
-                                />
-
-                                {/* Blue Tint Overlay on Hover */}
-                                <div className="absolute inset-0 bg-blue-500/30 mix-blend-color opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-
-                                {/* Scanning Overlay (Visible constantly but active on hover) */}
-                                <div className="absolute inset-0 bg-red-500/10 mix-blend-overlay z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                                {/* Grid Overlay */}
-                                <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-20 z-10 pointer-events-none" />
-
-                                {/* Scanning UI Elements (Appear on Hover) */}
-                                <div className="absolute inset-0 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    {/* Full Face Targeting Frame */}
-                                    <div className="absolute inset-4 border-2 border-red-500/50 rounded-lg">
-                                        <div className="absolute -top-1 -left-1 w-6 h-6 border-t-2 border-l-2 border-red-500" />
-                                        <div className="absolute -top-1 -right-1 w-6 h-6 border-t-2 border-r-2 border-red-500" />
-                                        <div className="absolute -bottom-1 -left-1 w-6 h-6 border-b-2 border-l-2 border-red-500" />
-                                        <div className="absolute -bottom-1 -right-1 w-6 h-6 border-b-2 border-r-2 border-red-500" />
-
-                                        {/* Scanning Bar */}
-                                        <motion.div
-                                            className="h-[2px] w-full bg-red-500 shadow-[0_0_15px_rgba(239,68,68,0.8)]"
-                                            animate={{ y: [0, 400, 0] }}
-                                            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                                        />
-                                    </div>
-
-                                    {/* Data Readout */}
-                                    <div className="absolute bottom-6 left-6 font-mono text-xs text-red-400 font-bold space-y-1 bg-black/50 p-2 rounded backdrop-blur-sm border border-red-500/30">
-                                        <div className="flex items-center gap-2">
-                                            <ScanFace size={14} className="animate-pulse text-red-500" />
-                                            <span>BIOMETRICS_MATCH: 100%</span>
-                                        </div>
-                                        <div className="flex items-center gap-2">
-                                            <CheckCircle2 size={14} className="text-red-500" />
-                                            <span>ACCESS_GRANTED</span>
-                                        </div>
-                                    </div>
+                        <div className="relative w-full max-w-[390px]">
+                            <div className="absolute -inset-4 border border-primary/20 rounded-2xl translate-x-3 translate-y-3" />
+                            <div className="absolute -inset-4 border border-white/5 rounded-2xl -translate-x-3 -translate-y-3" />
+                            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_25px_90px_rgba(0,0,0,0.45)]">
+                                <img src="/Pro.png" alt="Portrait of Newaz Nezif Abagero" className="w-full h-full object-cover object-top" />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-transparent to-transparent" />
+                                <div className="absolute bottom-0 left-0 right-0 p-6">
+                                    <p className="font-mono text-xs text-primary tracking-[0.16em] uppercase mb-2">Information Systems</p>
+                                    <p className="text-white text-xl font-semibold">Security-minded. Impact-driven.</p>
                                 </div>
                             </div>
-
-                            {/* Status Label (Pop-down animation) */}
-                            <div className="absolute -bottom-12 left-0 right-0 z-10 flex items-center justify-center opacity-0 -translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 ease-out delay-100">
-                                <div className="px-4 py-2 bg-red-500/10 border border-red-500/50 backdrop-blur-md rounded-lg flex items-center gap-2 shadow-[0_0_20px_rgba(239,68,68,0.3)]">
-                                    <ShieldCheck className="w-4 h-4 text-red-500" />
-                                    <span className="font-mono text-sm text-red-400 uppercase tracking-[0.1em] font-bold text-shadow-glow">
-                                        USER PRIVILEGED
-                                    </span>
-                                </div>
+                            <div className="absolute -bottom-7 -left-5 glass-panel px-4 py-3 rounded-xl hidden sm:block">
+                                <p className="font-mono text-[10px] uppercase tracking-widest text-text-secondary">Current focus</p>
+                                <p className="text-sm text-white font-semibold mt-1">Security + Applied AI</p>
                             </div>
                         </div>
                     </motion.div>
                 </div>
             </div>
 
-            <motion.div
-                className="absolute bottom-10 left-1/2 -translate-x-1/2"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, y: [0, 10, 0] }}
-                transition={{ duration: 2, repeat: Infinity, delay: 1.5 }}
-            >
-                <ArrowDown className="text-white/30 w-6 h-6" />
-            </motion.div>
+            <motion.a href="#about" aria-label="Scroll to about section" className="absolute bottom-7 left-1/2 -translate-x-1/2 text-white/40 hover:text-primary transition-colors" animate={{ y: [0, 7, 0] }} transition={{ duration: 2, repeat: Infinity }}>
+                <ArrowDown size={20} />
+            </motion.a>
         </section>
     );
 };
