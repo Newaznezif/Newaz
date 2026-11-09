@@ -88,6 +88,7 @@ export function InteractivePortfolio() {
     event.preventDefault();
     const command = terminalInput.trim().toLowerCase();
     if (!command) return;
+    playUiSound();
     if (command === "clear") setTerminalLines([]);
     else setTerminalLines((lines) => [...lines, "NEWAZ@ROOT:~$ " + command, terminalHelp[command] || "Command not found: " + command + ". Type help to see available commands."]);
     setTerminalInput("");
@@ -97,6 +98,7 @@ export function InteractivePortfolio() {
     event.preventDefault();
     const prompt = question.trim();
     if (!prompt) return;
+    playUiSound();
     const normalized = prompt.toLowerCase();
     const match = assistantAnswers.find((item) => item.keys.some((key) => normalized.includes(key)));
     const answer = match?.answer || "I can answer questions about Newaz's experience, projects, skills, education, certifications, and contact information. Try asking about one of those topics. This guide uses verified portfolio content and does not invent details.";
