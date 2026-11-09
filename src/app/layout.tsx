@@ -18,6 +18,11 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://newaznezif.netlify.app"),
+  icons: {
+    icon: "/Pro.png",
+    shortcut: "/Pro.png",
+    apple: "/Pro.png",
+  },
   title: "Newaz Nezif Abagero | Cybersecurity Analyst & AI",
   description: "Portfolio of Newaz Nezif Abagero, an Information Systems graduate and cybersecurity analyst focused on security operations, software engineering, and applied AI.",
   openGraph: {
