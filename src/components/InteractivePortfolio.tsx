@@ -84,7 +84,26 @@ export function InteractivePortfolio() {
 
   const qrUrl = useMemo(() => "https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=" + encodeURIComponent("https://newaznezif.netlify.app"), []);
 
-  function playUiSound() {\n    if (!soundEnabled) return;\n    try {\n      const context = new AudioContext();\n      const oscillator = context.createOscillator();\n      const gain = context.createGain();\n      oscillator.type = "sine";\n      oscillator.frequency.setValueAtTime(620, context.currentTime);\n      oscillator.frequency.exponentialRampToValueAtTime(360, context.currentTime + 0.07);\n      gain.gain.setValueAtTime(0.025, context.currentTime);\n      gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.08);\n      oscillator.connect(gain);\n      gain.connect(context.destination);\n      oscillator.start();\n      oscillator.stop(context.currentTime + 0.09);\n      oscillator.onended = () => void context.close();\n    } catch { /* Audio may be unavailable or blocked */ }\n  }\n\n  function runCommand(event: FormEvent<HTMLFormElement>) {
+  function playUiSound() {
+    if (!soundEnabled) return;
+    try {
+      const context = new AudioContext();
+      const oscillator = context.createOscillator();
+      const gain = context.createGain();
+      oscillator.type = "sine";
+      oscillator.frequency.setValueAtTime(620, context.currentTime);
+      oscillator.frequency.exponentialRampToValueAtTime(360, context.currentTime + 0.07);
+      gain.gain.setValueAtTime(0.025, context.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.08);
+      oscillator.connect(gain);
+      gain.connect(context.destination);
+      oscillator.start();
+      oscillator.stop(context.currentTime + 0.09);
+      oscillator.onended = () => void context.close();
+    } catch { /* Audio may be unavailable or blocked */ }
+  }
+
+  function runCommand(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const command = terminalInput.trim().toLowerCase();
     if (!command) return;
