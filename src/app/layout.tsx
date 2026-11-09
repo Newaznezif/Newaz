@@ -3,7 +3,6 @@ import { Inter, Poppins, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { BackgroundGrid } from "@/components/BackgroundGrid";
-
 import { VisualControl } from "@/components/ui/VisualControl";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
@@ -18,8 +17,23 @@ const jetbrains = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Newaz Nezif Abagero | Cybersecurity & AI Full-Stack Developer",
-  description: "Official portfolio of Newaz Nezif Abagero, Cybersecurity Analyst and AI-Focused Full-Stack Developer.",
+  metadataBase: new URL("https://newaznezif.netlify.app"),
+  title: "Newaz Nezif Abagero | Cybersecurity Analyst & AI",
+  description: "Portfolio of Newaz Nezif Abagero, an Information Systems graduate and cybersecurity analyst focused on security operations, software engineering, and applied AI.",
+  openGraph: {
+    title: "Newaz Nezif Abagero | Cybersecurity Analyst & AI",
+    description: "Cybersecurity, software engineering, and applied AI.",
+    url: "https://newaznezif.netlify.app",
+    siteName: "Newaz Nezif",
+    type: "website",
+    images: ["/Pro.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Newaz Nezif Abagero | Cybersecurity Analyst & AI",
+    description: "Cybersecurity, software engineering, and applied AI.",
+    images: ["/Pro.png"],
+  },
 };
 
 export default function RootLayout({
