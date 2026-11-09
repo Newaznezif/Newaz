@@ -1,7 +1,7 @@
 "use client";
 
 import { PROJECTS } from "@/constants";
-import { Github, ExternalLink, ArrowUpRight } from "lucide-react";
+import { Github, ExternalLink } from "lucide-react";
 import { Card } from "@/components/ui/Card";
 
 export const Projects = () => {
