@@ -14,16 +14,17 @@ interface SectionProps {
 
 export const Section = ({ children, id, title, subtitle, className }: SectionProps) => {
     return (
-        <section id={id} className={cn("py-24 border-t border-white/5", className)}>
+        <motion.section
+            id={id}
+            className={cn("py-24 border-t border-white/5", className)}
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, ease: "easeOut" }}
+            viewport={{ once: true, amount: 0.12 }}
+        >
             <div className="container-mega">
                 {(title || subtitle) && (
-                    <motion.div
-                        className="mb-16"
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                        viewport={{ once: true }}
-                    >
+                    <div className="mb-12">
                         {title && (
                             <h2 className="text-[var(--color-text-main)] relative inline-block">
                                 {title}
@@ -35,17 +36,10 @@ export const Section = ({ children, id, title, subtitle, className }: SectionPro
                                 {subtitle}
                             </p>
                         )}
-                    </motion.div>
+                    </div>
                 )}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                    viewport={{ once: true }}
-                >
-                    {children}
-                </motion.div>
+                {children}
             </div>
-        </section>
+        </motion.section>
     );
 };
