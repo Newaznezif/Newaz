@@ -1,164 +1,152 @@
-
 export const NAV_LINKS = [
     { name: "About", href: "#about" },
-    { name: "Skills", href: "#skills" },
+    { name: "Expertise", href: "#skills" },
     { name: "Experience", href: "#experience" },
     { name: "Projects", href: "#projects" },
     { name: "Education", href: "#education" },
-    { name: "Certifications", href: "#certifications" },
     { name: "Contact", href: "#contact" },
 ];
 
 export const PERSONAL_INFO = {
     name: "Newaz Nezif Abagero",
-    title: "Cybersecurity Analyst | AI-Focused Full-Stack Developer",
+    shortName: "Newaz Nezif",
+    title: "Cybersecurity Analyst",
+    focus: "AI • Security Operations • Digital Innovation",
     email: "newaznezif@gmail.com",
-    phone: "(+250) 953652707",
-    github: "https://github.com/Newaznezif/",
+    github: "https://github.com/NewazNezif",
     linkedin: "https://linkedin.com/in/newaz-nezif-285439262",
     location: "Addis Ababa, Ethiopia",
-    bio: "Cybersecurity analyst experienced in national-level threat monitoring, vulnerability assessment, and secure software development. Focused on protecting digital infrastructure and building resilient, intelligent systems.",
+    bio: "I am an Information Systems graduate and cybersecurity analyst focused on protecting digital infrastructure, understanding threats, and building useful technology. My work brings together security operations, Python development, data analysis, and AI-enabled problem solving. I am particularly interested in practical systems that address real challenges across Africa.",
 };
 
 export const SKILLS = [
     {
-        category: "Technical Skills",
+        category: "Cybersecurity & Operations",
         items: [
-            "Python", "Java", "Java EE", "SQL", "MySQL", "MongoDB", "Oracle",
-            "Full-Stack Web Development", "Network & System Administration",
-            "Penetration Testing", "Vulnerability Assessment", "Threat Monitoring",
-            "ETL", "Regression", "EDA", "Data Visualization", "Statistical Analysis", "Feature Engineering"
+            "Security Operations (SOC)", "Threat Monitoring", "Incident Response",
+            "Vulnerability Assessment", "Penetration Testing", "SIEM",
+            "Security Log Analysis", "Network Security", "Wireshark",
+            "Wazuh", "Splunk", "Kibana", "Kali Linux"
         ],
     },
     {
-        category: "Software Tools",
+        category: "Software & Data",
         items: [
-            "Wireshark", "Kali Linux", "Splunk", "Wazuh", "Kibana", "Git", "Docker",
-            "Microsoft Project", "Matplotlib", "Plotly", "CI/CD", "PyTorch", "TensorFlow"
+            "Python", "Java", "Java EE", "SQL", "MySQL", "MongoDB",
+            "Oracle", "Full-Stack Development", "REST APIs", "ETL",
+            "Exploratory Data Analysis", "Data Visualization", "Git", "Docker", "CI/CD"
+        ],
+    },
+    {
+        category: "AI & Intelligent Systems",
+        items: [
+            "Machine Learning", "PyTorch", "TensorFlow", "Predictive Modeling",
+            "Anomaly Detection", "Feature Engineering", "NLP",
+            "AI Integration", "Statistical Analysis"
         ],
     },
 ];
 
 export const EXPERIENCE = [
     {
-        role: "Youth Advisory Council Member",
-        company: "EngenderHealth Ethiopia",
-        location: "Ethiopia",
-        period: "Present",
-        description: [
-            "Leads youth capacity-building and leadership initiatives.",
-            "Drives digital SRHR advocacy to empower young people and foster regional community engagement.",
-        ],
-    },
-    {
         role: "Cybersecurity Analyst",
-        company: "FDRE INSA",
+        company: "FDRE Information Network Security Administration (INSA)",
         location: "Ethiopia",
         period: "04/2025 – Present",
         description: [
-            "24/7 Monitoring of national cybersecurity threats and implementing mitigation strategies.",
-            "Conducted vulnerability assessments and penetration testing, identifying and resolving critical security gaps.",
-            "Collaborated on policy development to improve operational efficiency and security compliance.",
+            "Contribute to cybersecurity monitoring and analysis in a national-level security operations environment.",
+            "Support threat investigation, incident response, and vulnerability assessment activities.",
+            "Work with security monitoring tools and technical analysis to identify and assess potential threats.",
         ],
     },
     {
-        role: "Cybersecurity Intern",
-        company: "Future Interns",
-        location: "India-Remote",
-        period: "11/2025 – 12/2025",
-        description: [
-            "Analyzed web application attacks to identify vulnerabilities.",
-            "Developed a full-stack, secure file-sharing platform in Python.",
-            "Investigated system logs to enhance security monitoring and response.",
-            "Completed tasks on OWASP Juice Shop security assessment and SOC analysis."
-        ],
-    },
-    {
-        role: "NID (Fayida) Officer",
-        company: "Ethio Telecom",
+        role: "NID (Fayda) Officer",
+        company: "Ethio telecom",
         location: "Ethiopia",
         period: "09/2024 – 04/2025",
         description: [
-            "Enrolled 4,000+ citizens in Ethiopia’s digital ID system, ensuring data integrity.",
-            "Ensured regulatory compliance and supported registration processes.",
-        ],
-    },
-    {
-        role: "Marketing Associate",
-        company: "Sememen Technology PLC",
-        location: "Ethiopia",
-        period: "05/2023",
-        description: [
-            "Conducted market research and developed client-specific marketing strategies.",
-            "Assisted in digital marketing campaigns to enhance client engagement.",
+            "Enrolled more than 4,000 citizens in Ethiopia’s digital ID system.",
+            "Supported accurate identity data capture, verification, and registration processes.",
         ],
     },
     {
         role: "Academic Writer & Research Assistant",
         company: "Private Contract",
-        location: "Ethiopia",
+        location: "Remote",
         period: "02/2022 – Present",
         description: [
-            "Conducted literature reviews, data analysis, and report writing for academic projects.",
+            "Support academic research through literature reviews, structured analysis, data interpretation, and report writing.",
+        ],
+    },
+    {
+        role: "Youth Advisory Council Member",
+        company: "EngenderHealth Ethiopia",
+        location: "Ethiopia",
+        period: "Present",
+        description: [
+            "Contribute to youth advisory work and communication initiatives through the Youth Advisory Council.",
+        ],
+    },
+    {
+        role: "Cybersecurity Intern",
+        company: "Future Interns",
+        location: "Remote",
+        period: "11/2025 – 12/2025",
+        description: [
+            "Worked on web application security, security log analysis, and SOC-oriented learning tasks.",
+            "Developed a secure file-sharing project using Python and applied web security practices.",
         ],
     },
 ];
 
 export const PROJECTS = [
     {
-        title: "Credit Risk Probability Model",
-        description: "End-to-end credit risk model using alternative eCommerce data. Features RFM analysis, ML pipeline with MLflow, and FastAPI/Docker deployment.",
-        tech: ["Python", "Machine Learning", "MLflow", "FastAPI", "Docker"],
-        github: "https://lnkd.in/d22gYNiw",
-        link: "https://lnkd.in/dCsUp2cx"
+        title: "Nexus AgriRise",
+        category: "AI • Agriculture • Climate",
+        description: "An Ethiopia-first agricultural intelligence platform connecting climate, environmental, and market information to support better decisions across the agricultural value chain.",
+        tech: ["Next.js", "AI", "Data Integration", "Climate Intelligence"],
+        github: "https://github.com/NewazNezif/nexus-agririse",
+        link: "https://nexus-agririse.vercel.app/",
+        featured: true,
     },
     {
-        title: "Insurance Risk Analytics",
-        description: "Predictive modeling for car insurance risk using hypothesis testing and ML. Includes risk-based premium framework and DVC workflows.",
-        tech: ["Python", "Pandas", "Scikit-learn", "DVC", "Git"],
-        github: "https://lnkd.in/dBNDAuHN",
-        link: "#"
+        title: "Irshaye",
+        category: "AgriTech • Decision Support",
+        description: "An AI-assisted digital platform for climate-smart agriculture in Ethiopia, bringing together agricultural data, climate insights, and market information.",
+        tech: ["Next.js", "AI Integration", "Agricultural Data"],
+        github: "https://github.com/NewazNezif/Irshaye",
+        link: "https://irshaye.vercel.app/",
+        featured: true,
     },
     {
-        title: "Secure File Sharing System",
-        description: "AES-256-GCM encrypted file sharing with key wrapping, secure memory handling, and auto-expiring links.",
-        tech: ["Python Flask", "PyCryptodome", "AES-256", "Web Security"],
-        github: "https://lnkd.in/dSQBkd4Q",
-        link: "#"
+        title: "OmoNetTab",
+        category: "Digital Marketplace • Social Impact",
+        description: "A digital marketplace concept supporting rural micro-entrepreneurs and tourism-related businesses in South Omo through accessible digital tools.",
+        tech: ["Next.js", "Supabase", "Digital Marketplace"],
+        github: "https://github.com/NewazNezif/OmoNetTab",
+        link: "https://omo-net-tab.vercel.app/team",
+        featured: true,
     },
     {
-        title: "Fintech Customer Analytics",
-        description: "NLP-based sentiment analysis of 1,800+ banking app reviews to extract customer insights and pain points.",
-        tech: ["Python", "NLP", "PostgreSQL", "Transformers"],
-        github: "https://lnkd.in/dEEdHjNP",
-        link: "https://lnkd.in/d9g2hkke"
-    },
-    {
-        title: "E-commerce Website",
-        description: "Full-stack E-commerce platform with user authentication, product catalog, secure payment integration, and optimized database queries.",
-        tech: ["Full-Stack", "Database Optimization", "Security"],
-        github: "https://github.com/Newaznezif/",
-        link: "#"
-    },
-    {
-        title: "Security Log Analysis (SOC)",
-        description: "Threat detection using Elasticsearch & Kibana. Analyzed failed logins, malware detections, and correlated IP activities.",
-        tech: ["Elasticsearch", "Kibana", "SOC", "Log Analysis"],
-        github: "#",
-        link: "#"
+        title: "Tsegure",
+        category: "AI • Computer Vision",
+        description: "An AI-assisted hairstyle recommendation project exploring face and hair analysis to support personalized style recommendations.",
+        tech: ["Next.js", "Expo", "Supabase", "Computer Vision"],
+        github: "https://github.com/NewazNezif/Tsegure",
+        link: "https://github.com/NewazNezif/Tsegure",
+        featured: false,
     },
 ];
 
 export const CERTIFICATIONS = [
-    { name: "Certified Cybersecurity Analyst", issuer: "ISC2", year: "2025" },
-    { name: "Certified Cybersecurity Educator Professional", issuer: "CCEP", year: "2025" },
+    { name: "Certified in Cybersecurity (CC)", issuer: "ISC2", year: "2025" },
+    { name: "Certified Cybersecurity Educator Professional (CCEP)", issuer: "CCEP", year: "2025" },
+    { name: "Google SIEM & SOAR Analyst", issuer: "Google", year: "2025" },
     { name: "SOC Analysis", issuer: "TryHackMe", year: "2025" },
-    { name: "Cybersecurity Fundamentals", issuer: "Cisco / ADB Institute", year: "2025" },
-    { name: "Ethical Hacking (CEH prep)", issuer: "Cisco / LetsDefend", year: "2024" },
-    { name: "Team Leadership & Coordination", issuer: "U.S. Embassy", year: "2024" },
     { name: "HCIA-Datacom V1.0", issuer: "Huawei", year: "2023" },
-    { name: "Microsoft Project Management", issuer: "Microsoft", year: "2023" },
-    { name: "Artificial Intelligence", issuer: "Simplilearn", year: "2023" },
+    { name: "APIsec Fundamentals", issuer: "APIsec University", year: "2025" },
+    { name: "Cybersecurity Fundamentals", issuer: "Cisco / ADB Institute", year: "2025" },
+    { name: "Ethical Hacking (CEH preparation)", issuer: "Self-directed learning", year: "2024" },
     { name: "Database Foundations", issuer: "Oracle Academy", year: "2022" },
     { name: "Programming in Java EE", issuer: "Red Hat Academy", year: "2022" },
     { name: "Python 101 for Data Science", issuer: "Cognitive Class", year: "2021" },
@@ -166,43 +154,37 @@ export const CERTIFICATIONS = [
 
 export const EDUCATION = [
     {
-        degree: "BSc. Information Systems",
+        degree: "BSc in Information Systems",
         school: "Wolkite University",
         location: "Ethiopia",
-        period: "2021 – 2024",
-        details: "GPA: 3.35/4.00 | Exit Exam Score: 72% | Specialization: Database Management, Cybersecurity, Full-Stack Development, AI & Data Analysis",
+        period: "09/2021 – 06/2024",
+        details: "GPA: 3.35/4.00 • Exit Exam: 72% • Focus areas: Database Management, Cybersecurity, Full-Stack Development, AI, and Data Analysis.",
     },
 ];
 
 export const AWARDS = [
     {
+        title: "3rd Place – AEYA Hackathon 2026",
+        organization: "AEYA New Leaders Lab",
+        year: "2026",
+        description: "Recognized with the OmoNetTab team for a digital marketplace concept supporting rural micro-entrepreneurs and tourism in South Omo.",
+    },
+    {
+        title: "AgroInnovation Festival – Project Acceptance",
+        organization: "Russia–Ethiopia AgroInnovation initiative",
+        year: "2026",
+        description: "Irshaye accepted as a project for the AgroInnovation Festival, focused on AI-assisted and climate-smart agriculture in Ethiopia.",
+    },
+    {
         title: "English Access Microscholarship Program",
         organization: "U.S. Department of State",
         year: "2018–2020",
-        description: "Two-year intensive English program sponsored by the U.S. Embassy.",
-    },
-    {
-        title: "E4BE Hackathon (Eastern Africa English for Business & Entrepreneurship)",
-        organization: "Arusha, Tanzania",
-        year: "2026",
-        description: "Participated in an international youth entrepreneurship and innovation hackathon held in Arusha, Tanzania. Engaged in teamwork, networking, innovation challenges, and cross-border collaboration with participants from across Africa.",
+        description: "Completed a two-year English language and leadership development program.",
     },
 ];
 
 export const VOLUNTEERING = [
-    {
-        role: "Event Coordination Assistant",
-        event: "ETEXT 2025",
-        year: "2025",
-    },
-    {
-        role: "Runner Support",
-        event: "Great Ethiopian Run",
-        year: "2025",
-    },
-    {
-        role: "Open-Source Contributor",
-        event: "GitHub Community",
-        year: "2023 – Present",
-    },
+    { role: "Communication Team", event: "EngenderHealth Youth Advisory Council", year: "Present" },
+    { role: "Event Coordination Assistant", event: "ETEXT", year: "2025" },
+    { role: "Runner Support", event: "Great Ethiopian Run", year: "2025" },
 ];
