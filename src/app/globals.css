@@ -270,3 +270,25 @@ html {
 @media (prefers-reduced-motion: reduce) {
   .mask-jaw-talking { animation: none !important; }
 }
+
+
+/* Subtle periodic blink for the mechanical mask's illuminated eyes. */
+.mask-eye-blink {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: mask-eye-blink 4.2s infinite;
+  will-change: transform;
+}
+
+.mask-eye-idle {
+  transform: scaleY(1);
+}
+
+@keyframes mask-eye-blink {
+  0%, 45%, 49%, 100% { transform: scaleY(1); }
+  46.5%, 47.5% { transform: scaleY(0.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mask-eye-blink { animation: none !important; }
+}

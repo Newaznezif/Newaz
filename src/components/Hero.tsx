@@ -147,9 +147,11 @@ export const Hero = () => {
                                     <path d="M180 34 L180 88 M105 81 L142 96 M255 81 L218 96" stroke="#00f2ea" strokeOpacity=".75" strokeWidth="3" />
                                     {/* Single continuous optical visor */}
                                     <path d="M62 137 L128 116 L169 129 L180 145 L191 129 L232 116 L298 137 L282 203 L225 222 L180 203 L135 222 L78 203Z" fill="#02090d" stroke="#6c858a" strokeWidth="4" />
-                                    <path d="M77 151 L133 134 L164 145 L151 185 L100 194Z M283 151 L227 134 L196 145 L209 185 L260 194Z" fill="#061b20" stroke="#00f2ea" strokeWidth="2.5" />
-                                    <path d="M89 163 L139 149 L127 176 L101 183Z M271 163 L221 149 L233 176 L259 183Z" fill="#00eaff" fillOpacity=".16" />
-                                    <path d="M90 162 L145 148 M270 162 L215 148" stroke="#bafaff" strokeWidth="3" strokeLinecap="round" />
+                                    <g className={maskActive ? "mask-eye-blink" : "mask-eye-idle"}>
+                                        <path d="M77 151 L133 134 L164 145 L151 185 L100 194Z M283 151 L227 134 L196 145 L209 185 L260 194Z" fill="#061b20" stroke="#00f2ea" strokeWidth="2.5" />
+                                        <path d="M89 163 L139 149 L127 176 L101 183Z M271 163 L221 149 L233 176 L259 183Z" fill="#00eaff" fillOpacity=".16" />
+                                        <path d="M90 162 L145 148 M270 162 L215 148" stroke="#bafaff" strokeWidth="3" strokeLinecap="round" />
+                                    </g>
                                     {/* Reinforced nose bridge */}
                                     <path d="M166 133 L180 118 L194 133 L202 238 L180 263 L158 238Z" fill="url(#hacker-mask-dark)" stroke="#9ab2b6" strokeWidth="3" />
                                     <path d="M180 145 L180 236 M165 224 L180 242 L195 224" stroke="#00f2ea" strokeOpacity=".8" strokeWidth="3" fill="none" />
