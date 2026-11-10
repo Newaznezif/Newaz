@@ -250,10 +250,6 @@ LESS TALK. MORE CODE. FEWER BUGS... WELL, WE'RE WORKING ON THAT.`;
                                     <p className={"mt-2 font-mono text-[9px] tracking-widest text-primary transition-opacity " + (maskActive ? "opacity-100" : "opacity-0")}>[ HOVER TO UNMASK / CLICK TO TOGGLE ]</p>
                                 </div>
                             </button>
-                            <div className="absolute -bottom-7 -left-5 glass-panel px-4 py-3 rounded-xl hidden sm:block">
-                                <p className="font-mono text-[10px] uppercase tracking-widest text-text-secondary">Current focus</p>
-                                <p className="text-sm text-white font-semibold mt-1">Security + Applied AI</p>
-                            </div>
                         </div>
                     </motion.div>
                 </div>
