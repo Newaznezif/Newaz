@@ -250,7 +250,7 @@ export function InteractivePortfolio() {
           </div>
           <div className="flex min-h-[150px] min-w-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-[#050b10] p-3">
             <div ref={tryHackMeBadgeRef} className="flex max-w-full items-center justify-center" />
-            {tryHackMeBadgeError && <a href="https://tryhackme.com/badge/t/21cc2edb0add739eccf31be687aee432a366b9f51e46e96a45b34fa7225b7d5b6a9d5553664c9c526eb783af31026674/embed?theme=dark" target="_blank" rel="noreferrer" className="text-center text-xs text-primary underline">Open TryHackMe badge</a>}
+            {tryHackMeBadgeError && <a href="https://tryhackme.com/p/Mr.Ping" target="_blank" rel="noreferrer" aria-label="View Mr.Ping's TryHackMe profile"><img src="https://cdn-images.tryhackme.com/public-profile/Mr.Ping/badge-dark-809f3e538720.png" alt="Mr.Ping's TryHackMe badge (static fallback)" width="400" height="auto" className="h-auto max-w-full" /></a>}
           </div>
         </div>
       </section>
