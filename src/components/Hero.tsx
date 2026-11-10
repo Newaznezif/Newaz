@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowDown, ArrowUpRight, Github, Linkedin, MapPin, Volume2 } from "lucide-react";
+import { ArrowDown, ArrowUpRight, Github, Linkedin, MapPin } from "lucide-react";
 import { PERSONAL_INFO } from "@/constants";
 
 export const Hero = () => {
@@ -60,16 +60,6 @@ export const Hero = () => {
                         </div>
                         <div className="flex flex-wrap items-center gap-3 mb-4">
                             <p className="font-mono text-sm text-text-secondary tracking-[0.18em] uppercase">Hello, I&apos;m</p>
-                            <button
-                                type="button"
-                                onClick={playIntro}
-                                disabled={isPlayingIntro}
-                                aria-label="Play Newaz Nezif glitch audio introduction"
-                                className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/[0.07] px-3 py-1.5 font-mono text-[10px] tracking-[0.12em] uppercase text-primary transition-all hover:border-primary/70 hover:bg-primary/15 disabled:cursor-wait disabled:opacity-60"
-                            >
-                                <Volume2 size={13} />
-                                {isPlayingIntro ? "TRANSMITTING..." : "PLAY INTRO"}
-                            </button>
                         </div>
                         {isPlayingIntro && (
                             <motion.div
@@ -137,7 +127,6 @@ export const Hero = () => {
                                 onMouseLeave={() => { setMaskActive(false); stopIntro(); }}
                                 onFocus={() => { setMaskActive(true); playIntro(); }}
                                 onBlur={() => { setMaskActive(false); stopIntro(); }}
-                                onClick={() => { setMaskActive((active) => { const next = !active; if (next) playIntro(); else stopIntro(); return next; }); }}
                                 className="group relative block w-full aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-left shadow-[0_25px_90px_rgba(0,0,0,0.45)] outline-none transition-[border-color,box-shadow] duration-300 hover:border-primary/60 hover:shadow-[0_0_45px_rgba(0,242,234,0.18)] focus-visible:ring-2 focus-visible:ring-primary"
                             >
                                 <img src="/Pro.png" alt="Portrait of Newaz Nezif Abagero" className="absolute inset-0 h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.025]" />
@@ -179,7 +168,7 @@ export const Hero = () => {
                                 <div className="absolute bottom-0 left-0 right-0 p-6">
                                     <p className="font-mono text-xs text-primary tracking-[0.16em] uppercase mb-2">Information Systems</p>
                                     <p className="text-white text-xl font-semibold">Security-minded. Impact-driven.</p>
-                                    <p className={"mt-2 font-mono text-[9px] tracking-widest text-primary transition-opacity " + (maskActive ? "opacity-100" : "opacity-0")}>[ HOVER TO UNMASK / CLICK TO TOGGLE ]</p>
+                                    <p className={"mt-2 font-mono text-[9px] tracking-widest text-primary transition-opacity " + (maskActive ? "opacity-100" : "opacity-0")}>[ HOVER TO ACTIVATE VOICE LINK ]</p>
                                 </div>
                             </button>
                             <div className="absolute -bottom-7 -left-5 glass-panel px-4 py-3 rounded-xl hidden sm:block" aria-hidden="true" />
