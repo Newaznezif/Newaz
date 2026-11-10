@@ -248,3 +248,25 @@ html {
     animation: none !important;
   }
 }
+
+
+/* Talking mechanical mask: subtle jaw movement while the intro voice is speaking. */
+.mask-jaw-talking {
+  transform-box: view-box;
+  transform-origin: 50% 72%;
+  animation: mask-jaw-speech 155ms ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+.mask-jaw-idle {
+  transform: translateY(0) scaleY(1);
+}
+
+@keyframes mask-jaw-speech {
+  from { transform: translateY(0) scaleY(1); }
+  to { transform: translateY(4px) scaleY(1.055); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mask-jaw-talking { animation: none !important; }
+}
