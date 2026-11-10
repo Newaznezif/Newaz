@@ -212,17 +212,36 @@ LESS TALK. MORE CODE. FEWER BUGS... WELL, WE'RE WORKING ON THAT.`;
                             >
                                 <img src="/Pro.png" alt="Portrait of Newaz Nezif Abagero" className="absolute inset-0 h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.025]" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-transparent to-transparent" />
-                                <svg viewBox="0 0 300 210" aria-hidden="true" className={"pointer-events-none absolute left-1/2 top-[21%] w-[66%] -translate-x-1/2 transition-all duration-300 " + (maskActive ? "scale-100 opacity-100" : "scale-90 opacity-0")}>
+                                <svg viewBox="0 0 360 420" aria-hidden="true" className={"pointer-events-none absolute left-1/2 top-[9%] w-[88%] -translate-x-1/2 transition-all duration-300 " + (maskActive ? "scale-100 opacity-100" : "scale-90 opacity-0")}>
                                     <defs>
-                                        <linearGradient id="hacker-mask-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f4ffff" /><stop offset="48%" stopColor="#a8c5c8" /><stop offset="100%" stopColor="#526b70" /></linearGradient>
+                                        <linearGradient id="hacker-mask-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f5ffff" /><stop offset="30%" stopColor="#9eb9bd" /><stop offset="65%" stopColor="#526a70" /><stop offset="100%" stopColor="#182b31" /></linearGradient>
+                                        <linearGradient id="hacker-mask-dark" x1="0" y1="0" x2="0.9" y2="1"><stop offset="0%" stopColor="#162b31" /><stop offset="100%" stopColor="#02080b" /></linearGradient>
                                         <filter id="hacker-mask-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
                                     </defs>
-                                    <path d="M150 8 C95 8 55 30 48 77 L57 139 C64 174 105 197 150 202 C195 197 236 174 243 139 L252 77 C245 30 205 8 150 8Z" fill="url(#hacker-mask-metal)" stroke="#00f2ea" strokeWidth="3" filter="url(#hacker-mask-glow)" />
-                                    <path d="M66 82 L133 72 L125 105 L75 112Z M234 82 L167 72 L175 105 L225 112Z" fill="#02090d" stroke="#18383d" strokeWidth="2" />
-                                    <path d="M145 76 L150 125 L137 137 L163 137 L150 125" fill="none" stroke="#526b70" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
-                                    <path d="M86 139 C105 128 127 131 150 145 C173 131 195 128 214 139 C199 167 178 178 150 178 C122 178 101 167 86 139Z" fill="#071115" stroke="#526b70" strokeWidth="3" />
-                                    <path d="M105 147 L195 147 M115 158 L185 158" stroke="#00f2ea" strokeOpacity=".75" strokeWidth="2" />
-                                    <path d="M49 77 L28 69 M251 77 L272 69" stroke="#00f2ea" strokeWidth="3" strokeLinecap="round" />
+                                    {/* Full-face armored shell */}
+                                    <path d="M180 8 C105 8 48 45 38 112 L48 250 C54 326 106 387 180 408 C254 387 306 326 312 250 L322 112 C312 45 255 8 180 8Z" fill="url(#hacker-mask-metal)" stroke="#00f2ea" strokeWidth="4" filter="url(#hacker-mask-glow)" />
+                                    {/* Temple armor and cheek plates */}
+                                    <path d="M42 116 L12 94 L20 222 L56 270 L67 174Z M318 116 L348 94 L340 222 L304 270 L293 174Z" fill="url(#hacker-mask-dark)" stroke="#00f2ea" strokeWidth="3" />
+                                    <path d="M54 238 L112 265 L94 330 L67 288Z M306 238 L248 265 L266 330 L293 288Z" fill="#263b40" stroke="#718d92" strokeWidth="2" />
+                                    {/* Forehead segmented armor */}
+                                    <path d="M72 76 L180 30 L288 76 L265 112 L180 91 L95 112Z" fill="#263d43" stroke="#829da1" strokeWidth="2" />
+                                    <path d="M180 34 L180 88 M105 81 L142 96 M255 81 L218 96" stroke="#00f2ea" strokeOpacity=".75" strokeWidth="3" />
+                                    {/* Single continuous optical visor */}
+                                    <path d="M62 137 L128 116 L169 129 L180 145 L191 129 L232 116 L298 137 L282 203 L225 222 L180 203 L135 222 L78 203Z" fill="#02090d" stroke="#6c858a" strokeWidth="4" />
+                                    <path d="M77 151 L133 134 L164 145 L151 185 L100 194Z M283 151 L227 134 L196 145 L209 185 L260 194Z" fill="#061b20" stroke="#00f2ea" strokeWidth="2.5" />
+                                    <path d="M89 163 L139 149 L127 176 L101 183Z M271 163 L221 149 L233 176 L259 183Z" fill="#00eaff" fillOpacity=".16" />
+                                    <path d="M90 162 L145 148 M270 162 L215 148" stroke="#bafaff" strokeWidth="3" strokeLinecap="round" />
+                                    {/* Reinforced nose bridge */}
+                                    <path d="M166 133 L180 118 L194 133 L202 238 L180 263 L158 238Z" fill="url(#hacker-mask-dark)" stroke="#9ab2b6" strokeWidth="3" />
+                                    <path d="M180 145 L180 236 M165 224 L180 242 L195 224" stroke="#00f2ea" strokeOpacity=".8" strokeWidth="3" fill="none" />
+                                    {/* Full lower-face respirator / jaw guard */}
+                                    <path d="M91 224 L145 241 L180 263 L215 241 L269 224 L257 314 C239 352 211 370 180 379 C149 370 121 352 103 314Z" fill="url(#hacker-mask-dark)" stroke="#8ba5aa" strokeWidth="4" />
+                                    <path d="M113 269 L247 269 L236 322 L180 350 L124 322Z" fill="#0b2025" stroke="#00f2ea" strokeWidth="2.5" />
+                                    <path d="M132 282 L228 282 M126 296 L234 296 M132 310 L228 310 M146 324 L214 324" stroke="#8da8ad" strokeWidth="5" strokeLinecap="round" />
+                                    <path d="M154 342 L180 354 L206 342" stroke="#00f2ea" strokeWidth="3" fill="none" />
+                                    {/* Mechanical fasteners and cyan status lights */}
+                                    <circle cx="63" cy="225" r="6" fill="#00f2ea" /><circle cx="297" cy="225" r="6" fill="#00f2ea" />
+                                    <circle cx="91" cy="104" r="4" fill="#d8ffff" /><circle cx="269" cy="104" r="4" fill="#d8ffff" />
                                 </svg>
                                 <span className={"pointer-events-none absolute right-4 top-4 rounded border border-primary/50 bg-black/70 px-2 py-1 font-mono text-[9px] tracking-[0.16em] text-primary transition-opacity " + (maskActive ? "opacity-100" : "opacity-0 group-hover:opacity-100")}>MASK_PROTOCOL // ACTIVE</span>
                                 <div className="absolute bottom-0 left-0 right-0 p-6">
