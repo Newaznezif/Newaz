@@ -86,3 +86,165 @@ html {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* Full-page cyber atmosphere: subtle ambient motion behind all content. */
+.cyber-atmosphere {
+  isolation: isolate;
+}
+
+.cyber-ambient-glow,
+.cyber-morph,
+.cyber-glass-shape,
+.cyber-network-lines,
+.cyber-vignette {
+  position: absolute;
+  pointer-events: none;
+}
+
+.cyber-ambient-glow {
+  width: clamp(18rem, 42vw, 42rem);
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  filter: blur(75px);
+  mix-blend-mode: screen;
+  opacity: 0.16;
+  will-change: transform;
+}
+
+.cyber-glow-one {
+  top: -18%;
+  left: -12%;
+  background: radial-gradient(circle, rgba(0, 242, 234, 0.9), rgba(0, 115, 160, 0.22) 42%, transparent 72%);
+  animation: cyber-orb-drift-one 27s ease-in-out infinite alternate;
+}
+
+.cyber-glow-two {
+  top: 28%;
+  right: -18%;
+  width: clamp(20rem, 48vw, 48rem);
+  background: radial-gradient(circle, rgba(36, 105, 255, 0.82), rgba(74, 45, 190, 0.2) 46%, transparent 72%);
+  animation: cyber-orb-drift-two 34s ease-in-out infinite alternate;
+}
+
+.cyber-glow-three {
+  bottom: -28%;
+  left: 26%;
+  width: clamp(18rem, 38vw, 38rem);
+  background: radial-gradient(circle, rgba(0, 242, 234, 0.5), rgba(92, 45, 180, 0.16) 48%, transparent 72%);
+  animation: cyber-orb-drift-three 31s ease-in-out infinite alternate;
+}
+
+.cyber-morph {
+  width: clamp(15rem, 30vw, 30rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(0, 242, 234, 0.12);
+  border-radius: 42% 58% 63% 37% / 42% 38% 62% 58%;
+  background: linear-gradient(135deg, rgba(0, 242, 234, 0.055), rgba(44, 91, 255, 0.025) 55%, rgba(129, 73, 255, 0.045));
+  box-shadow: inset 0 0 55px rgba(0, 242, 234, 0.035), 0 0 65px rgba(0, 150, 255, 0.035);
+  backdrop-filter: blur(2px);
+  will-change: transform, border-radius;
+}
+
+.cyber-morph-one {
+  top: 14%;
+  left: 58%;
+  animation: cyber-morph-shift 25s ease-in-out infinite alternate, cyber-orb-drift-two 38s ease-in-out infinite alternate;
+}
+
+.cyber-morph-two {
+  top: 62%;
+  left: -9%;
+  width: clamp(12rem, 24vw, 24rem);
+  opacity: 0.72;
+  animation: cyber-morph-shift 31s ease-in-out infinite alternate-reverse, cyber-orb-drift-one 42s ease-in-out infinite alternate;
+}
+
+.cyber-glass-shape {
+  width: clamp(5rem, 11vw, 10rem);
+  aspect-ratio: 1;
+  border: 1px solid rgba(139, 225, 255, 0.15);
+  background: linear-gradient(135deg, rgba(255,255,255,0.035), rgba(0,242,234,0.018) 55%, rgba(80,100,255,0.035));
+  box-shadow: inset 0 0 28px rgba(0, 242, 234, 0.035), 0 0 35px rgba(0, 160, 255, 0.04);
+  backdrop-filter: blur(8px);
+  transform: rotate(35deg) skew(-7deg, -7deg);
+}
+
+.cyber-glass-shape span {
+  position: absolute;
+  inset: 14%;
+  border: 1px solid rgba(0, 242, 234, 0.12);
+  transform: rotate(18deg);
+}
+
+.cyber-glass-one {
+  top: 21%;
+  left: 11%;
+  animation: cyber-glass-float 19s ease-in-out infinite;
+}
+
+.cyber-glass-two {
+  right: 9%;
+  bottom: 17%;
+  width: clamp(4rem, 8vw, 7rem);
+  opacity: 0.65;
+  animation: cyber-glass-float 23s ease-in-out infinite reverse;
+}
+
+.cyber-network-lines {
+  inset: 0;
+  opacity: 0.075;
+  background-image:
+    linear-gradient(30deg, transparent 49.7%, rgba(0, 242, 234, 0.2) 50%, transparent 50.3%),
+    linear-gradient(150deg, transparent 49.7%, rgba(57, 125, 255, 0.18) 50%, transparent 50.3%);
+  background-size: 230px 190px, 310px 250px;
+  mask-image: radial-gradient(ellipse at center, black 5%, transparent 78%);
+}
+
+.cyber-vignette {
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 35%, rgba(2, 5, 10, 0.32) 100%);
+}
+
+@keyframes cyber-orb-drift-one {
+  0% { transform: translate3d(0, 0, 0) scale(0.94); }
+  50% { transform: translate3d(8vw, 5vh, 0) scale(1.08); }
+  100% { transform: translate3d(2vw, 12vh, 0) scale(0.98); }
+}
+
+@keyframes cyber-orb-drift-two {
+  0% { transform: translate3d(0, 0, 0) scale(1); }
+  50% { transform: translate3d(-7vw, 8vh, 0) scale(0.92); }
+  100% { transform: translate3d(-2vw, -5vh, 0) scale(1.1); }
+}
+
+@keyframes cyber-orb-drift-three {
+  0% { transform: translate3d(0, 0, 0) scale(0.9); }
+  100% { transform: translate3d(6vw, -8vh, 0) scale(1.12); }
+}
+
+@keyframes cyber-morph-shift {
+  0% { border-radius: 42% 58% 63% 37% / 42% 38% 62% 58%; }
+  50% { border-radius: 63% 37% 42% 58% / 55% 62% 38% 45%; }
+  100% { border-radius: 35% 65% 54% 46% / 62% 39% 61% 38%; }
+}
+
+@keyframes cyber-glass-float {
+  0%, 100% { translate: 0 0; rotate: -4deg; }
+  50% { translate: 0 -22px; rotate: 5deg; }
+}
+
+@media (max-width: 640px) {
+  .cyber-ambient-glow { filter: blur(58px); opacity: 0.13; }
+  .cyber-morph-two { left: -22%; }
+  .cyber-glass-one { left: 3%; top: 32%; }
+  .cyber-network-lines { opacity: 0.045; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cyber-ambient-glow,
+  .cyber-morph,
+  .cyber-glass-shape {
+    animation: none !important;
+  }
+}
