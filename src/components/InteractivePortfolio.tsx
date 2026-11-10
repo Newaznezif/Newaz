@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import {
-  Award, Bot, CheckCircle2, Copy, ExternalLink, Github, LockKeyhole, Network,
+  Award, Bot, CheckCircle2, Copy, ExternalLink, Github, LockKeyhole, Network, Target,
   Radio, Shield, Terminal, UserRound, Volume2, VolumeX, Zap
 } from "lucide-react";
 import { AWARDS, CERTIFICATIONS, PERSONAL_INFO, PROJECTS } from "@/constants";
@@ -50,6 +50,8 @@ export function InteractivePortfolio() {
   const [events, setEvents] = useState<GithubEvent[]>([]);
   const [githubStatus, setGithubStatus] = useState("Loading public GitHub activity…");
   const [copied, setCopied] = useState(false);
+  const tryHackMeBadgeRef = useRef<HTMLDivElement>(null);
+  const [tryHackMeBadgeError, setTryHackMeBadgeError] = useState(false);
 
   useEffect(() => {
     try {
@@ -80,6 +82,23 @@ export function InteractivePortfolio() {
       .then((data) => { setEvents(Array.isArray(data) ? data : []); setGithubStatus("Public GitHub events • fetched from GitHub API"); })
       .catch(() => setGithubStatus("GitHub activity is temporarily unavailable."));
     return () => controller.abort();
+  }, []);
+
+  useEffect(() => {
+    const mount = tryHackMeBadgeRef.current;
+    if (!mount) return;
+
+    // TryHackMe's official embed script renders the automatically updating badge.
+    const script = document.createElement("script");
+    script.src = "https://tryhackme.com/badge/t/21cc2edb0add739eccf31be687aee432a366b9f51e46e96a45b34fa7225b7d5b6a9d5553664c9c526eb783af31026674?theme=dark";
+    script.async = true;
+    script.onerror = () => setTryHackMeBadgeError(true);
+    mount.appendChild(script);
+
+    return () => {
+      script.remove();
+      mount.replaceChildren();
+    };
   }, []);
 
   const qrUrl = useMemo(() => "https://api.qrserver.com/v1/create-qr-code/?size=180x180&margin=8&data=" + encodeURIComponent("https://newaznezif.netlify.app"), []);
@@ -220,13 +239,29 @@ export function InteractivePortfolio() {
         <div className="mt-4 grid gap-4 md:grid-cols-3">{AWARDS.map((award) => <article key={award.title} className="rounded-xl border border-primary/20 bg-primary/[0.04] p-4"><CheckCircle2 size={18} className="mb-3 text-primary"/><h4 className="text-sm font-semibold">{award.title}</h4><p className="mt-1 text-xs text-text-secondary">{award.organization} • {award.year}</p><p className="mt-3 text-xs leading-relaxed text-text-secondary">{award.description}</p></article>)}</div>
       </section>
 
+      <section id="tryhackme" className="container-mega scroll-mt-24 pb-16">
+        <div className="mb-5 flex items-center gap-3"><Target className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">07 / HANDS-ON SECURITY LEARNING</p><h3 className="text-2xl font-bold">TryHackMe profile</h3></div></div>
+        <div className="glass-panel grid gap-6 rounded-xl p-5 sm:grid-cols-[1fr_auto] sm:items-center sm:p-7">
+          <div>
+            <p className="mb-2 font-mono text-xs tracking-widest text-primary">OFFENSIVE & DEFENSIVE SECURITY PRACTICE</p>
+            <h4 className="text-xl font-bold">Mr.Ping</h4>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-text-secondary">My TryHackMe learning profile, featuring an automatically updating badge that reflects my current platform progress.</p>
+            <a href="https://tryhackme.com/p/Mr.Ping" target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 rounded border border-primary/40 px-4 py-2 text-xs font-semibold text-primary transition hover:bg-primary/10">View full TryHackMe profile <ExternalLink size={13}/></a>
+          </div>
+          <div className="flex min-h-[150px] min-w-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-[#050b10] p-3">
+            <div ref={tryHackMeBadgeRef} className="flex max-w-full items-center justify-center" />
+            {tryHackMeBadgeError && <a href="https://tryhackme.com/badge/t/21cc2edb0add739eccf31be687aee432a366b9f51e46e96a45b34fa7225b7d5b6a9d5553664c9c526eb783af31026674/embed?theme=dark" target="_blank" rel="noreferrer" className="text-center text-xs text-primary underline">Open TryHackMe badge</a>}
+          </div>
+        </div>
+      </section>
+
       <section id="github-activity" className="container-mega scroll-mt-24 pb-16">
-        <div className="mb-5 flex items-center gap-3"><Github className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">07 / DEVELOPER ACTIVITY</p><h3 className="text-2xl font-bold">GitHub public activity</h3></div></div>
+        <div className="mb-5 flex items-center gap-3"><Github className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">08 / DEVELOPER ACTIVITY</p><h3 className="text-2xl font-bold">GitHub public activity</h3></div></div>
         <div className="glass-panel rounded-xl p-5"><div className="mb-4 flex flex-wrap items-center justify-between gap-3"><p className="text-xs text-emerald-300">{githubStatus}</p><a href="https://github.com/NewazNezif" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs text-primary">View GitHub <ExternalLink size={12}/></a></div>{events.length ? <div className="divide-y divide-white/10">{events.map((item) => <div key={item.id} className="flex flex-wrap items-center gap-3 py-3 text-xs"><span className="rounded bg-primary/10 px-2 py-1 font-mono text-primary">{item.type.replace("Event", "")}</span><span className="min-w-0 flex-1 truncate text-white">{item.repo.name}</span><span className="text-text-secondary">{new Date(item.created_at).toLocaleDateString()}</span></div>)}</div> : <p className="py-5 text-sm text-text-secondary">{githubStatus}</p>}</div>
       </section>
 
       <section id="identity-card" className="container-mega scroll-mt-24 pb-20">
-        <div className="mb-5 flex items-center gap-3"><UserRound className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">08 / DIGITAL IDENTITY CARD</p><h3 className="text-2xl font-bold">Connect with Newaz</h3></div></div>
+        <div className="mb-5 flex items-center gap-3"><UserRound className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">09 / DIGITAL IDENTITY CARD</p><h3 className="text-2xl font-bold">Connect with Newaz</h3></div></div>
         <div className="glass-panel grid gap-6 rounded-xl p-6 sm:grid-cols-[1fr_auto] sm:items-center sm:p-8">
           <div><p className="mb-2 font-mono text-xs tracking-widest text-primary">DIGITAL PROFILE / VERIFIED LINKS</p><h4 className="text-2xl font-bold">{PERSONAL_INFO.name}</h4><p className="mt-1 text-sm text-text-secondary">{PERSONAL_INFO.title} • {PERSONAL_INFO.location}</p><div className="mt-5 flex flex-wrap gap-3"><a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="rounded border border-white/15 px-3 py-2 text-xs hover:border-primary/50 hover:text-primary">LinkedIn</a><a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="rounded border border-white/15 px-3 py-2 text-xs hover:border-primary/50 hover:text-primary">GitHub</a><a href={"mailto:" + PERSONAL_INFO.email} className="rounded border border-white/15 px-3 py-2 text-xs hover:border-primary/50 hover:text-primary">Email</a><button onClick={copyEmail} className="inline-flex items-center gap-1 rounded border border-white/15 px-3 py-2 text-xs hover:border-primary/50 hover:text-primary"><Copy size={12}/>{copied ? "Copied" : "Copy email"}</button></div></div>
           <div className="w-fit rounded-lg bg-white p-3"><img src={qrUrl} alt="QR code linking to Newaz Nezif's portfolio" width="150" height="150" loading="lazy"/><p className="mt-2 text-center text-[9px] font-mono text-black">SCAN PORTFOLIO</p></div>
