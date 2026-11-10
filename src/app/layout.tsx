@@ -47,9 +47,11 @@ export default function RootLayout({
         className={`${inter.variable} ${poppins.variable} ${jetbrains.variable} font-sans bg-background text-text selection:bg-primary/30 selection:text-primary overflow-x-hidden`}
       >
         <BackgroundGrid />
-        <Navbar />
-        {children}
-        <VisualControl />
+        <div className="relative z-10">
+          <Navbar />
+          {children}
+          <VisualControl />
+        </div>
       </body>
     </html>
   );
