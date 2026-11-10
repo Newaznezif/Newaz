@@ -1,6 +1,6 @@
 export const BackgroundGrid = () => {
     return (
-        <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
+        <div className="cyber-atmosphere fixed inset-0 -z-10 overflow-hidden pointer-events-none" aria-hidden="true">
             <div className="absolute inset-0 bg-background" />
             <div
                 className="absolute inset-0 opacity-[0.025]"
@@ -9,12 +9,21 @@ export const BackgroundGrid = () => {
                     backgroundSize: "80px 80px",
                 }}
             />
+            <div className="cyber-ambient-glow cyber-glow-one" />
+            <div className="cyber-ambient-glow cyber-glow-two" />
+            <div className="cyber-ambient-glow cyber-glow-three" />
+            <div className="cyber-morph cyber-morph-one" />
+            <div className="cyber-morph cyber-morph-two" />
+            <div className="cyber-glass-shape cyber-glass-one"><span /></div>
+            <div className="cyber-glass-shape cyber-glass-two"><span /></div>
+            <div className="cyber-network-lines" />
             <div
                 className="absolute inset-0"
                 style={{
                     background: "radial-gradient(circle 1000px at 50% -200px, rgba(59, 130, 246, 0.045), transparent)",
                 }}
             />
+            <div className="cyber-vignette" />
         </div>
     );
 };
