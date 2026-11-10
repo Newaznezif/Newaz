@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowDown, ArrowUpRight, Github, Linkedin, MapPin, Volume2 } from "lucide-react";
 import { PERSONAL_INFO } from "@/constants";
