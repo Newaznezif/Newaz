@@ -8,6 +8,7 @@ import { PERSONAL_INFO } from "@/constants";
 export const Hero = () => {
     const reduceMotion = useReducedMotion();
     const [isPlayingIntro, setIsPlayingIntro] = useState(false);
+    const [maskActive, setMaskActive] = useState(false);
     const entrance = reduceMotion
         ? {}
         : { initial: { opacity: 0, y: 12 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.45, ease: "easeOut" as const } };
@@ -198,14 +199,38 @@ LESS TALK. MORE CODE. FEWER BUGS... WELL, WE'RE WORKING ON THAT.`;
                         <div className="relative w-full max-w-[390px]">
                             <div className="absolute -inset-4 border border-primary/20 rounded-2xl translate-x-3 translate-y-3" />
                             <div className="absolute -inset-4 border border-white/5 rounded-2xl -translate-x-3 -translate-y-3" />
-                            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] shadow-[0_25px_90px_rgba(0,0,0,0.45)]">
-                                <img src="/Pro.png" alt="Portrait of Newaz Nezif Abagero" className="w-full h-full object-cover object-top" />
+                            <button
+                                type="button"
+                                aria-label={maskActive ? "Show normal profile portrait" : "Activate hacker mask portrait"}
+                                aria-pressed={maskActive}
+                                onMouseEnter={() => setMaskActive(true)}
+                                onMouseLeave={() => setMaskActive(false)}
+                                onFocus={() => setMaskActive(true)}
+                                onBlur={() => setMaskActive(false)}
+                                onClick={() => setMaskActive((active) => !active)}
+                                className="group relative block w-full aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-left shadow-[0_25px_90px_rgba(0,0,0,0.45)] outline-none transition-[border-color,box-shadow] duration-300 hover:border-primary/60 hover:shadow-[0_0_45px_rgba(0,242,234,0.18)] focus-visible:ring-2 focus-visible:ring-primary"
+                            >
+                                <img src="/Pro.png" alt="Portrait of Newaz Nezif Abagero" className="absolute inset-0 h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.025]" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-[#050505]/90 via-transparent to-transparent" />
+                                <svg viewBox="0 0 300 210" aria-hidden="true" className={"pointer-events-none absolute left-1/2 top-[21%] w-[66%] -translate-x-1/2 transition-all duration-300 " + (maskActive ? "scale-100 opacity-100" : "scale-90 opacity-0")}>
+                                    <defs>
+                                        <linearGradient id="hacker-mask-metal" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#f4ffff" /><stop offset="48%" stopColor="#a8c5c8" /><stop offset="100%" stopColor="#526b70" /></linearGradient>
+                                        <filter id="hacker-mask-glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+                                    </defs>
+                                    <path d="M150 8 C95 8 55 30 48 77 L57 139 C64 174 105 197 150 202 C195 197 236 174 243 139 L252 77 C245 30 205 8 150 8Z" fill="url(#hacker-mask-metal)" stroke="#00f2ea" strokeWidth="3" filter="url(#hacker-mask-glow)" />
+                                    <path d="M66 82 L133 72 L125 105 L75 112Z M234 82 L167 72 L175 105 L225 112Z" fill="#02090d" stroke="#18383d" strokeWidth="2" />
+                                    <path d="M145 76 L150 125 L137 137 L163 137 L150 125" fill="none" stroke="#526b70" strokeWidth="5" strokeLinecap="round" strokeLinejoin="round" />
+                                    <path d="M86 139 C105 128 127 131 150 145 C173 131 195 128 214 139 C199 167 178 178 150 178 C122 178 101 167 86 139Z" fill="#071115" stroke="#526b70" strokeWidth="3" />
+                                    <path d="M105 147 L195 147 M115 158 L185 158" stroke="#00f2ea" strokeOpacity=".75" strokeWidth="2" />
+                                    <path d="M49 77 L28 69 M251 77 L272 69" stroke="#00f2ea" strokeWidth="3" strokeLinecap="round" />
+                                </svg>
+                                <span className={"pointer-events-none absolute right-4 top-4 rounded border border-primary/50 bg-black/70 px-2 py-1 font-mono text-[9px] tracking-[0.16em] text-primary transition-opacity " + (maskActive ? "opacity-100" : "opacity-0 group-hover:opacity-100")}>MASK_PROTOCOL // ACTIVE</span>
                                 <div className="absolute bottom-0 left-0 right-0 p-6">
                                     <p className="font-mono text-xs text-primary tracking-[0.16em] uppercase mb-2">Information Systems</p>
                                     <p className="text-white text-xl font-semibold">Security-minded. Impact-driven.</p>
+                                    <p className={"mt-2 font-mono text-[9px] tracking-widest text-primary transition-opacity " + (maskActive ? "opacity-100" : "opacity-0")}>[ HOVER TO UNMASK / CLICK TO TOGGLE ]</p>
                                 </div>
-                            </div>
+                            </button>
                             <div className="absolute -bottom-7 -left-5 glass-panel px-4 py-3 rounded-xl hidden sm:block">
                                 <p className="font-mono text-[10px] uppercase tracking-widest text-text-secondary">Current focus</p>
                                 <p className="text-sm text-white font-semibold mt-1">Security + Applied AI</p>
