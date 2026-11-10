@@ -1,4 +1,5 @@
 import { Hero } from "@/components/Hero";
+import { InteractivePortfolio } from "@/components/InteractivePortfolio";
 import { PERSONAL_INFO } from "@/constants";
 import { Section } from "@/components/Section";
 import { Skills } from "@/components/Skills";
@@ -13,6 +14,7 @@ export default function Home() {
   return (
     <main id="top" className="min-h-screen">
       <Hero />
+      <InteractivePortfolio />
 
       <Section
         id="about"
@@ -46,27 +48,21 @@ export default function Home() {
       <Section id="skills" title="Technical Expertise" subtitle="Tools and disciplines I use across security, engineering, and data-driven projects.">
         <Skills />
       </Section>
-
       <Section id="experience" title="Experience" subtitle="Professional roles and ongoing contributions.">
         <Experience />
       </Section>
-
       <Section id="projects" title="Selected Projects" subtitle="Technology projects focused on practical problems and measurable utility.">
         <Projects />
       </Section>
-
       <Section id="certifications" title="Certifications & Training" subtitle="Selected credentials and technical learning.">
         <Certifications />
       </Section>
-
       <Section id="education" title="Education & Recognition">
         <EducationAndAwards />
       </Section>
-
       <Section id="contact" title="Contact" subtitle="For professional opportunities, technical collaboration, or project discussions.">
         <Contact />
       </Section>
-
       <Footer />
     </main>
   );
