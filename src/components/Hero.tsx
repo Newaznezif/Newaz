@@ -13,107 +13,37 @@ export const Hero = () => {
         ? {}
         : { initial: { opacity: 0, y: 12 }, animate: { opacity: 1, y: 0 }, transition: { duration: 0.45, ease: "easeOut" as const } };
 
-    const introScript = `Hello, internet! Is the Wi-Fi working? Good. Because you're about to enter my world.
-I AM NEWAZ NEZIF.
-Cybersecurity analyst by profession, developer by curiosity, AI enthusiast by obsession, and professional debugger of problems I sometimes create myself.
-I spend my days analyzing cyber threats, exploring artificial intelligence, writing code, building applications, and occasionally asking myself why something worked perfectly yesterday but decided to retire today.
-I speak Python, Java, SQL, and occasionally fluent ERROR 404.
-Firewalls? I study them. Networks? I investigate them. Bugs? Unfortunately, they know me personally.
-I believe every problem has a solution, every system has something worth understanding, and every developer deserves at least one coffee before debugging production.
-My mission? Explore technology, strengthen cybersecurity, build intelligent solutions, and turn crazy ideas into real-world projects.
-I'm not saying I can hack the planet... but I can definitely spend six hours figuring out why a semicolon broke everything.
-So, take a look around. Explore my projects, discover my work, and get to know the person behind the keyboard.
-Just one warning: curiosity is contagious.
-I AM NEWAZ NEZIF.
-LESS TALK. MORE CODE. FEWER BUGS... WELL, WE'RE WORKING ON THAT.`;
+    const introScript = `System online. Identity confirmed. I am Newaz Nezif — cybersecurity analyst, AI enthusiast, and professionally curious human. Welcome to my digital domain.`;
+
+    const stopIntro = () => {
+        if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+        setIsPlayingIntro(false);
+    };
 
     const playIntro = () => {
-        if (isPlayingIntro) return;
+        if (isPlayingIntro || !("speechSynthesis" in window)) return;
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(introScript);
+        utterance.lang = "en-US";
+        utterance.rate = 0.88;
+        utterance.pitch = 0.68;
+        utterance.volume = 1;
+        const voices = window.speechSynthesis.getVoices();
+        const preferredVoice = voices.find((voice) => /david|mark|guy|google us english|daniel/i.test(voice.name) && voice.lang.toLowerCase().startsWith("en"))
+            || voices.find((voice) => voice.lang.toLowerCase().startsWith("en"));
+        if (preferredVoice) utterance.voice = preferredVoice;
+        utterance.onend = () => setIsPlayingIntro(false);
+        utterance.onerror = () => setIsPlayingIntro(false);
         setIsPlayingIntro(true);
-
-        let audioContext: AudioContext | null = null;
-        let ambienceNodes: OscillatorNode[] = [];
-        let ambienceGain: GainNode | null = null;
-
-        const stopAmbience = () => {
-            if (!audioContext || !ambienceGain) return;
-            try {
-                const now = audioContext.currentTime;
-                ambienceGain.gain.cancelScheduledValues(now);
-                ambienceGain.gain.setTargetAtTime(0.0001, now, 0.12);
-                ambienceNodes.forEach((node) => {
-                    try { node.stop(now + 0.45); } catch { /* already stopped */ }
-                });
-                setTimeout(() => {
-                    if (audioContext && audioContext.state !== "closed") void audioContext.close();
-                }, 600);
-            } catch {
-                if (audioContext && audioContext.state !== "closed") void audioContext.close();
-            }
-        };
-
-        // Quiet synthesized cyber ambience runs underneath the spoken intro.
-        try {
-            audioContext = new AudioContext();
-            const filter = audioContext.createBiquadFilter();
-            ambienceGain = audioContext.createGain();
-            filter.type = "lowpass";
-            filter.frequency.value = 260;
-            ambienceGain.gain.setValueAtTime(0.0001, audioContext.currentTime);
-            ambienceGain.gain.linearRampToValueAtTime(0.025, audioContext.currentTime + 0.35);
-            filter.connect(ambienceGain);
-            ambienceGain.connect(audioContext.destination);
-
-            [48, 96, 144].forEach((frequency, index) => {
-                const oscillator = audioContext!.createOscillator();
-                const voiceGain = audioContext!.createGain();
-                oscillator.type = index === 1 ? "square" : "sawtooth";
-                oscillator.frequency.value = frequency;
-                voiceGain.gain.value = index === 0 ? 0.18 : 0.055;
-                oscillator.connect(voiceGain);
-                voiceGain.connect(filter);
-                oscillator.start();
-                ambienceNodes.push(oscillator);
-            });
-
-            // A brief digital glitch accent at the beginning of the transmission.
-            const glitchOscillator = audioContext.createOscillator();
-            const glitchGain = audioContext.createGain();
-            glitchOscillator.type = "square";
-            glitchOscillator.frequency.setValueAtTime(980, audioContext.currentTime);
-            glitchOscillator.frequency.exponentialRampToValueAtTime(170, audioContext.currentTime + 0.22);
-            glitchGain.gain.setValueAtTime(0.0001, audioContext.currentTime);
-            glitchGain.gain.exponentialRampToValueAtTime(0.045, audioContext.currentTime + 0.025);
-            glitchGain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 0.28);
-            glitchOscillator.connect(glitchGain);
-            glitchGain.connect(audioContext.destination);
-            glitchOscillator.start();
-            glitchOscillator.stop(audioContext.currentTime + 0.3);
-        } catch {
-            audioContext = null;
-        }
-
-        const finishIntro = () => {
-            stopAmbience();
-            setIsPlayingIntro(false);
-        };
-
-        if ("speechSynthesis" in window) {
-            window.speechSynthesis.cancel();
-            const line = new SpeechSynthesisUtterance(introScript);
-            line.lang = "en-US";
-            line.rate = 0.92;
-            line.pitch = 0.82;
-            line.volume = 1;
-            const englishVoice = window.speechSynthesis.getVoices().find((voice) => voice.lang.toLowerCase().startsWith("en"));
-            if (englishVoice) line.voice = englishVoice;
-            line.onend = finishIntro;
-            line.onerror = finishIntro;
-            window.speechSynthesis.speak(line);
-        } else {
-            setTimeout(finishIntro, 2000);
-        }
+        window.speechSynthesis.speak(utterance);
     };
+
+    useEffect(() => {
+        return () => {
+            if ("speechSynthesis" in window) window.speechSynthesis.cancel();
+        };
+    }, []);
+
     return (
         <section className="relative min-h-[92vh] flex items-center overflow-hidden pt-28 pb-20">
             <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -203,11 +133,11 @@ LESS TALK. MORE CODE. FEWER BUGS... WELL, WE'RE WORKING ON THAT.`;
                                 type="button"
                                 aria-label={maskActive ? "Show normal profile portrait" : "Activate hacker mask portrait"}
                                 aria-pressed={maskActive}
-                                onMouseEnter={() => setMaskActive(true)}
-                                onMouseLeave={() => setMaskActive(false)}
-                                onFocus={() => setMaskActive(true)}
-                                onBlur={() => setMaskActive(false)}
-                                onClick={() => setMaskActive((active) => !active)}
+                                onMouseEnter={() => { setMaskActive(true); playIntro(); }}
+                                onMouseLeave={() => { setMaskActive(false); stopIntro(); }}
+                                onFocus={() => { setMaskActive(true); playIntro(); }}
+                                onBlur={() => { setMaskActive(false); stopIntro(); }}
+                                onClick={() => { setMaskActive((active) => { const next = !active; if (next) playIntro(); else stopIntro(); return next; }); }}
                                 className="group relative block w-full aspect-[4/5] overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] text-left shadow-[0_25px_90px_rgba(0,0,0,0.45)] outline-none transition-[border-color,box-shadow] duration-300 hover:border-primary/60 hover:shadow-[0_0_45px_rgba(0,242,234,0.18)] focus-visible:ring-2 focus-visible:ring-primary"
                             >
                                 <img src="/Pro.png" alt="Portrait of Newaz Nezif Abagero" className="absolute inset-0 h-full w-full object-cover object-top transition duration-500 group-hover:scale-[1.025]" />
@@ -235,15 +165,17 @@ LESS TALK. MORE CODE. FEWER BUGS... WELL, WE'RE WORKING ON THAT.`;
                                     <path d="M166 133 L180 118 L194 133 L202 238 L180 263 L158 238Z" fill="url(#hacker-mask-dark)" stroke="#9ab2b6" strokeWidth="3" />
                                     <path d="M180 145 L180 236 M165 224 L180 242 L195 224" stroke="#00f2ea" strokeOpacity=".8" strokeWidth="3" fill="none" />
                                     {/* Full lower-face respirator / jaw guard */}
-                                    <path d="M91 224 L145 241 L180 263 L215 241 L269 224 L257 314 C239 352 211 370 180 379 C149 370 121 352 103 314Z" fill="url(#hacker-mask-dark)" stroke="#8ba5aa" strokeWidth="4" />
-                                    <path d="M113 269 L247 269 L236 322 L180 350 L124 322Z" fill="#0b2025" stroke="#00f2ea" strokeWidth="2.5" />
-                                    <path d="M132 282 L228 282 M126 296 L234 296 M132 310 L228 310 M146 324 L214 324" stroke="#8da8ad" strokeWidth="5" strokeLinecap="round" />
-                                    <path d="M154 342 L180 354 L206 342" stroke="#00f2ea" strokeWidth="3" fill="none" />
+                                    <g className={isPlayingIntro ? "mask-jaw-talking" : "mask-jaw-idle"}>
+                                        <path d="M91 224 L145 241 L180 263 L215 241 L269 224 L257 314 C239 352 211 370 180 379 C149 370 121 352 103 314Z" fill="url(#hacker-mask-dark)" stroke="#8ba5aa" strokeWidth="4" />
+                                        <path d="M113 269 L247 269 L236 322 L180 350 L124 322Z" fill="#0b2025" stroke="#00f2ea" strokeWidth="2.5" />
+                                        <path d="M132 282 L228 282 M126 296 L234 296 M132 310 L228 310 M146 324 L214 324" stroke="#8da8ad" strokeWidth="5" strokeLinecap="round" />
+                                        <path d="M154 342 L180 354 L206 342" stroke="#00f2ea" strokeWidth="3" fill="none" />
+                                    </g>
                                     {/* Mechanical fasteners and cyan status lights */}
                                     <circle cx="63" cy="225" r="6" fill="#00f2ea" /><circle cx="297" cy="225" r="6" fill="#00f2ea" />
                                     <circle cx="91" cy="104" r="4" fill="#d8ffff" /><circle cx="269" cy="104" r="4" fill="#d8ffff" />
                                 </svg>
-                                <span className={"pointer-events-none absolute right-4 top-4 rounded border border-primary/50 bg-black/70 px-2 py-1 font-mono text-[9px] tracking-[0.16em] text-primary transition-opacity " + (maskActive ? "opacity-100" : "opacity-0 group-hover:opacity-100")}>MASK_PROTOCOL // ACTIVE</span>
+                                <span className={"pointer-events-none absolute right-4 top-4 rounded border border-primary/50 bg-black/70 px-2 py-1 font-mono text-[9px] tracking-[0.16em] text-primary transition-opacity " + (maskActive ? "opacity-100" : "opacity-0 group-hover:opacity-100")}>{isPlayingIntro ? "VOICE_LINK // ACTIVE" : "MASK_PROTOCOL // ACTIVE"}</span>
                                 <div className="absolute bottom-0 left-0 right-0 p-6">
                                     <p className="font-mono text-xs text-primary tracking-[0.16em] uppercase mb-2">Information Systems</p>
                                     <p className="text-white text-xl font-semibold">Security-minded. Impact-driven.</p>
