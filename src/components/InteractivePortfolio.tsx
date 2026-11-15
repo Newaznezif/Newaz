@@ -187,7 +187,7 @@ export function InteractivePortfolio() {
       </section>
 
       <section id="terminal" className="container-mega scroll-mt-24 pb-10">
-        <div className="mb-5 flex items-center gap-3"><Terminal className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">01 / INTERACTIVE TERMINAL</p><h3 className="text-2xl font-bold">Root access: portfolio edition</h3></div></div>
+        <div className="mb-4 flex items-center gap-3"><Terminal className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">01 / INTERACTIVE TERMINAL</p><h3 className="text-2xl font-bold">Root access: portfolio edition</h3></div></div>
         <div className="overflow-hidden rounded-xl border border-primary/25 bg-[#020807] shadow-[0_15px_60px_rgba(0,0,0,0.28)]">
           <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.03] px-4 py-3"><div className="flex items-center gap-2"><i className="h-2.5 w-2.5 rounded-full bg-red-400" /><i className="h-2.5 w-2.5 rounded-full bg-yellow-400" /><i className="h-2.5 w-2.5 rounded-full bg-green-400" /><span className="ml-2 font-mono text-[10px] text-white/45">newaz@root:~</span></div><span className="font-mono text-[10px] text-emerald-400">SESSION ACTIVE</span></div>
           <div className="h-48 space-y-2 overflow-y-auto p-3 font-mono text-xs leading-relaxed sm:text-sm" aria-live="polite">{terminalLines.map((line, index) => <p key={index} className={line.startsWith("NEWAZ@") ? "text-primary" : "whitespace-pre-wrap text-emerald-100/80"}>{line}</p>)}</div>
@@ -195,8 +195,8 @@ export function InteractivePortfolio() {
         </div>
       </section>
 
-      <section id="assistant" className="container-mega scroll-mt-24 pb-16">
-        <div className="mb-5 flex items-center gap-3"><Bot className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">02 / PORTFOLIO ASSISTANT</p><h3 className="text-2xl font-bold">Ask Newaz</h3></div></div>
+      <section id="assistant" className="container-mega scroll-mt-24 pb-10">
+        <div className="mb-4 flex items-center gap-3"><Bot className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">02 / PORTFOLIO ASSISTANT</p><h3 className="text-2xl font-bold">Ask Newaz</h3></div></div>
         <div className="glass-panel overflow-hidden rounded-xl">
           <div className="flex items-center gap-2 border-b border-white/10 px-4 py-3 text-xs text-text-secondary"><span className="h-2 w-2 rounded-full bg-emerald-400" /> Portfolio knowledge base • source-grounded responses</div>
           <div className="max-h-64 space-y-3 overflow-y-auto p-3">{chat.map((message, index) => <div key={index} className={"max-w-3xl rounded-lg p-3 text-sm leading-relaxed " + (message.role === "user" ? "ml-auto bg-primary/10 text-white" : "border border-white/10 bg-black/20 text-text-secondary")}><span className="mb-1 block font-mono text-[9px] uppercase tracking-widest text-primary">{message.role === "user" ? "VISITOR" : "NEWAZ PORTFOLIO GUIDE"}</span>{message.text}</div>)}</div>
@@ -205,8 +205,8 @@ export function InteractivePortfolio() {
         </div>
       </section>
 
-      <section id="security-center" className="container-mega scroll-mt-24 pb-16">
-        <div className="mb-5 flex items-center gap-3"><Shield className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">03 / CYBERSECURITY COMMAND CENTER</p><h3 className="text-2xl font-bold">Threat intelligence feed</h3></div></div>
+      <section id="security-center" className="container-mega scroll-mt-24 pb-10">
+        <div className="mb-4 flex items-center gap-3"><Shield className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">03 / CYBERSECURITY COMMAND CENTER</p><h3 className="text-2xl font-bold">Threat intelligence feed</h3></div></div>
         <div className="glass-panel rounded-xl p-4">
           <div className="mb-4 flex flex-wrap items-center justify-between gap-3"><div className="flex items-center gap-2 text-xs text-emerald-300"><Radio size={15} /> {cveStatus}</div><span className="text-[10px] text-text-secondary">Source: CISA KEV public catalog</span></div>
           {cves.length ? <div className="divide-y divide-white/10">{cves.map((cve) => <article key={cve.cveID} className="grid gap-2 py-3 sm:grid-cols-[145px_1fr_auto] sm:items-center"><span className="font-mono text-xs text-primary">{cve.cveID}</span><div><h4 className="text-sm font-semibold text-white">{cve.vulnerabilityName}</h4><p className="mt-1 line-clamp-2 text-xs text-text-secondary">{cve.shortDescription}</p><p className="mt-1 text-[10px] text-text-secondary">{cve.vendorProject} • Added {cve.dateAdded}</p></div><a href={"https://www.cisa.gov/known-exploited-vulnerabilities-catalog?search_api_fulltext=" + encodeURIComponent(cve.cveID)} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs text-primary">Details <ExternalLink size={12} /></a></article>)}</div> : <p className="py-8 text-sm text-text-secondary">{cveStatus}</p>}
@@ -214,8 +214,8 @@ export function InteractivePortfolio() {
         </div>
       </section>
 
-      <section id="network-lab" className="container-mega scroll-mt-24 pb-16">
-        <div className="mb-5 flex items-center gap-3"><Network className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">04 / NETWORK VISUALIZATION LAB</p><h3 className="text-2xl font-bold">How a secured network is layered</h3></div></div>
+      <section id="network-lab" className="container-mega scroll-mt-24 pb-10">
+        <div className="mb-4 flex items-center gap-3"><Network className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">04 / NETWORK VISUALIZATION LAB</p><h3 className="text-2xl font-bold">How a secured network is layered</h3></div></div>
         <div className="glass-panel rounded-xl p-3 sm:p-5">
           <svg viewBox="0 0 820 300" role="img" aria-label="Illustrative network diagram showing internet, firewall, monitoring, application server, and protected database" className="w-full">
             <defs><marker id="network-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" fill="#00f2ea" /></marker></defs>
@@ -228,19 +228,19 @@ export function InteractivePortfolio() {
         </div>
       </section>
 
-      <section id="mission-files" className="container-mega scroll-mt-24 pb-16">
-        <div className="mb-5 flex items-center gap-3"><LockKeyhole className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">05 / PROJECT MISSION FILES</p><h3 className="text-2xl font-bold">Selected builds</h3></div></div>
+      <section id="mission-files" className="container-mega scroll-mt-24 pb-10">
+        <div className="mb-4 flex items-center gap-3"><LockKeyhole className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">05 / PROJECT MISSION FILES</p><h3 className="text-2xl font-bold">Selected builds</h3></div></div>
         <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">{PROJECTS.map((project, index) => <article key={project.title} className="glass-panel cyber-3d-card flex flex-col rounded-xl p-4 transition hover:border-primary/30"><div className="mb-3 flex items-center justify-between"><span className="font-mono text-[10px] tracking-widest text-primary">MISSION FILE / 0{index+1}</span><span className="text-[10px] text-text-secondary">{project.category}</span></div><h4 className="mb-2 text-lg font-bold">{project.title}</h4><p className="mb-3 flex-1 text-xs leading-relaxed text-text-secondary">{project.description}</p><div className="mb-3 flex flex-wrap gap-2">{project.tech.map((tech) => <span key={tech} className="rounded border border-white/10 px-2 py-1 text-[10px] text-white/70">{tech}</span>)}</div><div className="flex items-center gap-4 border-t border-white/10 pt-4 text-xs"><a href={project.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-text-secondary hover:text-primary"><Github size={14}/> Repository</a><a href={project.link} target="_blank" rel="noreferrer" className="ml-auto inline-flex items-center gap-1.5 text-primary">Open project <ExternalLink size={13}/></a></div></article>)}</div>
       </section>
 
-      <section id="achievement-wall" className="container-mega scroll-mt-24 pb-16">
-        <div className="mb-5 flex items-center gap-3"><Award className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">06 / ACHIEVEMENT WALL</p><h3 className="text-2xl font-bold">Credentials & milestones</h3></div></div>
+      <section id="achievement-wall" className="container-mega scroll-mt-24 pb-10">
+        <div className="mb-4 flex items-center gap-3"><Award className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">06 / ACHIEVEMENT WALL</p><h3 className="text-2xl font-bold">Credentials & milestones</h3></div></div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">{CERTIFICATIONS.slice(0, 9).map((cert) => <article key={cert.name} className="glass-panel cyber-3d-card rounded-xl p-3"><div className="mb-3 flex items-center justify-between"><Award size={18} className="text-primary"/><span className="font-mono text-[10px] text-text-secondary">{cert.year}</span></div><h4 className="text-sm font-semibold">{cert.name}</h4><p className="mt-1 text-xs text-text-secondary">{cert.issuer}</p></article>)}</div>
         <div className="mt-3 grid gap-3 md:grid-cols-3">{AWARDS.map((award) => <article key={award.title} className="cyber-3d-card rounded-xl border border-primary/20 bg-primary/[0.04] p-3"><CheckCircle2 size={18} className="mb-3 text-primary"/><h4 className="text-sm font-semibold">{award.title}</h4><p className="mt-1 text-xs text-text-secondary">{award.organization} • {award.year}</p><p className="mt-3 text-xs leading-relaxed text-text-secondary">{award.description}</p></article>)}</div>
       </section>
 
-      <section id="tryhackme" className="container-mega scroll-mt-24 pb-16">
-        <div className="mb-5 flex items-center gap-3"><Target className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">07 / HANDS-ON SECURITY LEARNING</p><h3 className="text-2xl font-bold">TryHackMe profile</h3></div></div>
+      <section id="tryhackme" className="container-mega scroll-mt-24 pb-10">
+        <div className="mb-4 flex items-center gap-3"><Target className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">07 / HANDS-ON SECURITY LEARNING</p><h3 className="text-2xl font-bold">TryHackMe profile</h3></div></div>
         <div className="glass-panel grid gap-4 rounded-xl p-4 sm:grid-cols-[1fr_auto] sm:items-center sm:p-5">
           <div>
             <p className="mb-2 font-mono text-xs tracking-widest text-primary">OFFENSIVE & DEFENSIVE SECURITY PRACTICE</p>
@@ -255,13 +255,13 @@ export function InteractivePortfolio() {
         </div>
       </section>
 
-      <section id="github-activity" className="container-mega scroll-mt-24 pb-16">
-        <div className="mb-5 flex items-center gap-3"><Github className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">08 / DEVELOPER ACTIVITY</p><h3 className="text-2xl font-bold">GitHub public activity</h3></div></div>
+      <section id="github-activity" className="container-mega scroll-mt-24 pb-10">
+        <div className="mb-4 flex items-center gap-3"><Github className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">08 / DEVELOPER ACTIVITY</p><h3 className="text-2xl font-bold">GitHub public activity</h3></div></div>
         <div className="glass-panel rounded-xl p-4"><div className="mb-3 flex flex-wrap items-center justify-between gap-3"><p className="text-xs text-emerald-300">{githubStatus}</p><a href="https://github.com/NewazNezif" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs text-primary">View GitHub <ExternalLink size={12}/></a></div>{events.length ? <div className="divide-y divide-white/10">{events.map((item) => <div key={item.id} className="flex flex-wrap items-center gap-3 py-3 text-xs"><span className="rounded bg-primary/10 px-2 py-1 font-mono text-primary">{item.type.replace("Event", "")}</span><span className="min-w-0 flex-1 truncate text-white">{item.repo.name}</span><span className="text-text-secondary">{new Date(item.created_at).toLocaleDateString()}</span></div>)}</div> : <p className="py-5 text-sm text-text-secondary">{githubStatus}</p>}</div>
       </section>
 
       <section id="identity-card" className="container-mega scroll-mt-24 pb-12">
-        <div className="mb-5 flex items-center gap-3"><UserRound className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">09 / DIGITAL IDENTITY CARD</p><h3 className="text-2xl font-bold">Connect with Newaz</h3></div></div>
+        <div className="mb-4 flex items-center gap-3"><UserRound className="text-primary" /><div><p className="font-mono text-[10px] tracking-[0.18em] text-primary">09 / DIGITAL IDENTITY CARD</p><h3 className="text-2xl font-bold">Connect with Newaz</h3></div></div>
         <div className="glass-panel grid gap-4 rounded-xl p-4 sm:grid-cols-[1fr_auto] sm:items-center sm:p-5">
           <div><p className="mb-2 font-mono text-xs tracking-widest text-primary">DIGITAL PROFILE / VERIFIED LINKS</p><h4 className="text-2xl font-bold">{PERSONAL_INFO.name}</h4><p className="mt-1 text-sm text-text-secondary">{PERSONAL_INFO.title} • {PERSONAL_INFO.location}</p><div className="mt-5 flex flex-wrap gap-3"><a href={PERSONAL_INFO.linkedin} target="_blank" rel="noreferrer" className="rounded border border-white/15 px-3 py-2 text-xs hover:border-primary/50 hover:text-primary">LinkedIn</a><a href={PERSONAL_INFO.github} target="_blank" rel="noreferrer" className="rounded border border-white/15 px-3 py-2 text-xs hover:border-primary/50 hover:text-primary">GitHub</a><a href={"mailto:" + PERSONAL_INFO.email} className="rounded border border-white/15 px-3 py-2 text-xs hover:border-primary/50 hover:text-primary">Email</a><button onClick={copyEmail} className="inline-flex items-center gap-1 rounded border border-white/15 px-3 py-2 text-xs hover:border-primary/50 hover:text-primary"><Copy size={12}/>{copied ? "Copied" : "Copy email"}</button></div></div>
           <div className="w-fit rounded-lg bg-white p-2"><img src={qrUrl} alt="QR code linking to Newaz Nezif's portfolio" width="128" height="128" loading="lazy"/><p className="mt-2 text-center text-[9px] font-mono text-black">SCAN PORTFOLIO</p></div>
