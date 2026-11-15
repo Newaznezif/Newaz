@@ -16,7 +16,7 @@ export const Section = ({ children, id, title, subtitle, className }: SectionPro
     return (
         <motion.section
             id={id}
-            className={cn("py-24 border-t border-white/5", className)}
+            className={cn("py-14 sm:py-16 border-t border-white/5 scroll-mt-24", className)}
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.45, ease: "easeOut" }}
@@ -24,7 +24,7 @@ export const Section = ({ children, id, title, subtitle, className }: SectionPro
         >
             <div className="container-mega">
                 {(title || subtitle) && (
-                    <div className="mb-12">
+                    <div className="mb-8 sm:mb-9">
                         {title && (
                             <h2 className="text-[var(--color-text-main)] relative inline-block">
                                 {title}
@@ -32,7 +32,7 @@ export const Section = ({ children, id, title, subtitle, className }: SectionPro
                             </h2>
                         )}
                         {subtitle && (
-                            <p className="text-text-secondary text-lg max-w-3xl mt-4">
+                            <p className="text-text-secondary text-base sm:text-lg max-w-3xl mt-3">
                                 {subtitle}
                             </p>
                         )}

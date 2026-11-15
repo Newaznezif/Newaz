@@ -26,18 +26,18 @@ export default function Home() {
             {PERSONAL_INFO.bio}
           </p>
         </div>
-        <div className="grid sm:grid-cols-3 gap-4 mt-10 max-w-4xl">
-          <div className="glass-panel p-5">
+        <div className="grid sm:grid-cols-3 gap-3 mt-7 max-w-4xl">
+          <div className="glass-panel cyber-3d-card p-4">
             <p className="font-mono text-primary text-sm mb-2">01 / DEFEND</p>
             <p className="text-white font-semibold">Cybersecurity operations</p>
             <p className="text-text-secondary text-sm mt-2">Monitoring, investigation, and risk reduction.</p>
           </div>
-          <div className="glass-panel p-5">
+          <div className="glass-panel cyber-3d-card p-4">
             <p className="font-mono text-primary text-sm mb-2">02 / BUILD</p>
             <p className="text-white font-semibold">Software engineering</p>
             <p className="text-text-secondary text-sm mt-2">Practical applications and secure systems.</p>
           </div>
-          <div className="glass-panel p-5">
+          <div className="glass-panel cyber-3d-card p-4">
             <p className="font-mono text-primary text-sm mb-2">03 / EXPLORE</p>
             <p className="text-white font-semibold">Applied AI & data</p>
             <p className="text-text-secondary text-sm mt-2">Turning data into useful decision support.</p>
